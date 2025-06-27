@@ -1,43 +1,48 @@
-const express = require('express');
-const flowersRouter = require('./routes/flowers'); 
-const mongoose = require('mongoose');
+const express   = require('express');
+const flowersRouter = require('./routes/flowers');
+const userRouter    = require('./routes/users');
+const mongoose  = require('mongoose');
+const path      = require('path');
+const cors      = require('cors');           // ← already required
 require('dotenv').config();
-const path = require('path');
-const userRouter = require('./routes/users');
 
-
-const app = express();
+const app  = express();
 const PORT = process.env.PORT || 4001;
 
-// Middleware to parse JSON
+/* ----------  CORS  -------------------------------------------------- */
+const allowedOrigins = [
+  'http://localhost:3000',
+  'https://flower-frontend-dggg.onrender.com'
+];
+
+app.use(
+  cors({
+    origin: allowedOrigins,          // who may talk to this API
+    methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'],
+    credentials: false               // flip to true only if you send cookies / auth headers
+  })
+);
+/* -------------------------------------------------------------------- */
+
 app.use(express.json());
 
 app.use((req, res, next) => {
-  console.log(req.path, req.method);
+  console.log(req.method, req.path);
   next();
 });
 
+/* ----------  DB + STATIC + ROUTES (unchanged) ----------------------- */
+mongoose
+  .connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
+  .then(() => console.log('Connected to MongoDB'))
+  .catch(err => console.error('MongoDB connection error:', err));
 
-const MONGO_URI = process.env.MONGO_URI;
-
-mongoose.connect(MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
-  .then(() => console.log("Connected to MongoDB"))
-  .catch(err => console.error("MongoDB connection error:", err));
-
-//uploaded images statically
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
-  app.get('/', (req, res) => {
-    res.send('Welcome to the Flower API!');
-  });
-  
+app.get('/', (_, res) => res.send('Welcome to the Flower API!'));
 
-// Define a test route
 app.use('/api/flowers', flowersRouter);
-app.use('/api/users', userRouter)
+app.use('/api/users',   userRouter);
+/* -------------------------------------------------------------------- */
 
-
-// Start the server
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
-});
+app.listen(PORT, () => console.log(`Server is running on port ${PORT}`));
