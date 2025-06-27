@@ -19,7 +19,7 @@ app.use(
   cors({
     origin: allowedOrigins,          // who may talk to this API
     methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'],
-    credentials: false               // flip to true only if you send cookies / auth headers
+    credentials: true             // flip to true only if you send cookies / auth headers
   })
 );
 /* -------------------------------------------------------------------- */
