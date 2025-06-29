@@ -1,9 +1,10 @@
-const express   = require('express');
+const express       = require('express');
 const flowersRouter = require('./routes/flowers');
 const userRouter    = require('./routes/users');
-const mongoose  = require('mongoose');
-const path      = require('path');
-const cors      = require('cors');           // ← already required
+const mongoose      = require('mongoose');
+const path          = require('path');
+const cors          = require('cors');
+const fileUpload    = require('express-fileupload');   // ← NEW
 require('dotenv').config();
 
 const app  = express();
@@ -17,9 +18,18 @@ const allowedOrigins = [
 
 app.use(
   cors({
-    origin: allowedOrigins,          // who may talk to this API
+    origin: allowedOrigins,
     methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'],
-    credentials: true             // flip to true only if you send cookies / auth headers
+    credentials: true
+  })
+);
+/* -------------------------------------------------------------------- */
+
+/* ----------  FILE‑UPLOAD MIDDLEWARE  -------------------------------- */
+app.use(
+  fileUpload({
+    useTempFiles: true,      // store incoming files in /tmp first
+    tempFileDir: '/tmp/',    // default temp directory inside your container
   })
 );
 /* -------------------------------------------------------------------- */
@@ -31,7 +41,7 @@ app.use((req, res, next) => {
   next();
 });
 
-/* ----------  DB + STATIC + ROUTES (unchanged) ----------------------- */
+/* ----------  DB + STATIC + ROUTES  ---------------------------------- */
 mongoose
   .connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => console.log('Connected to MongoDB'))

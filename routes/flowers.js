@@ -1,25 +1,28 @@
+// routes/flowers.js
 const express = require('express');
-const Flower = require('../models/flowerModel')
+const router  = express.Router();
+
 const {
-  createFlower,
-  getFlowers,
-  getFlower,
+  addFlower,
+  getAllFlowers,
+  getFlowerById,
   deleteFlower,
   updateFlower,
-  upload
 } = require('../controllers/flowerControllers');
 
-const router = express.Router()
+// GET /api/flowers
+router.get('/', getAllFlowers);
 
-router.get('/', getFlowers)
+// GET /api/flowers/:id
+router.get('/:id', getFlowerById);
 
-router.get('/:id', getFlower) 
+// POST /api/flowers  (express‑fileupload already parsed req.files)
+router.post('/', addFlower);
 
-router.post('/', upload.single('Image'), createFlower) 
+// DELETE /api/flowers/:id
+router.delete('/:id', deleteFlower);
 
-router.delete('/:id', deleteFlower) 
-
-router.patch('/:id', upload.single('Image'), updateFlower)
-
+// PATCH /api/flowers/:id
+router.patch('/:id', updateFlower);
 
 module.exports = router;
