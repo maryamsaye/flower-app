@@ -10,22 +10,19 @@ const addFlower = async (req, res) => {
     if (req.files && req.files.image) {
       const file = req.files.image;
 
-      const result = await cloudinary.uploader.upload(file.tempFilePath, {
-        folder: "flower_app_images",
-        use_filename: true,
-        unique_filename: false,
-      });
+       const uploaded = await cloud.uploader.upload(req.file.path, { folder: 'flowers' });
+    fs.unlinkSync(req.file.path);
 
       imagePath = result.secure_url;
     }
 
     // Now create the flower with either the uploaded image OR the provided image URL
     const newFlower = new Flower({
-      name,
+      title,
       description,
       price: parseFloat(price),
       category,
-      image: imagePath,
+      Image: result.secure_url,
     });
 
     await newFlower.save();
@@ -93,8 +90,12 @@ const deleteFlower = async (req, res) => {
 const updateFlower = async (req, res) => {
   try {
     const { id } = req.params;
-    const updatedData = req.body;
-
+    const updatedData = req.body; 
+  if (req.file) {
+      const uploaded = await cloud.uploader.upload(req.file.path, { folder: 'flowers' });
+      fs.unlinkSync(req.file.path);
+      updateData.Image = uploaded.secure_url;
+    }
     // If an image file is uploaded, upload it to Cloudinary
     if (req.files && req.files.image) {
       const file = req.files.image;

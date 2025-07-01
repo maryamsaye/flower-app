@@ -4,7 +4,7 @@ const userRouter    = require('./routes/users');
 const mongoose      = require('mongoose');
 const path          = require('path');
 const cors          = require('cors');
-const fileUpload    = require('express-fileupload');   // ← NEW
+const multer    = require('multer');   // ← NEW
 require('dotenv').config();
 
 const app  = express();
@@ -26,12 +26,8 @@ app.use(
 /* -------------------------------------------------------------------- */
 
 /* ----------  FILE‑UPLOAD MIDDLEWARE  -------------------------------- */
-app.use(
-  fileUpload({
-    useTempFiles: true,      // store incoming files in /tmp first
-    tempFileDir: '/tmp/',    // default temp directory inside your container
-  })
-);
+app.use(express.urlencoded({ extended: true }));
+
 /* -------------------------------------------------------------------- */
 
 app.use(express.json());
@@ -47,7 +43,7 @@ mongoose
   .then(() => console.log('Connected to MongoDB'))
   .catch(err => console.error('MongoDB connection error:', err));
 
-app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+// app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 app.get('/', (_, res) => res.send('Welcome to the Flower API!'));
 
