@@ -1,7 +1,7 @@
 // controllers/flowerControllers.js
 const fs       = require('fs');
 const Flower   = require('../models/flowerModel');
-const cloud    = require('../config/cloudinary');
+const cloud    = require('../config/cloudinaryConfig');
 
 /* ── POST /api/flowers ─────────────────────────────────────────────── */
 exports.addFlower = async (req, res) => {
