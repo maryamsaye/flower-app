@@ -1,128 +1,90 @@
-const Flower = require("../models/flowerModel");
-const cloudinary = require("../config/cloudinaryConfig");
+// controllers/flowerControllers.js
+const fs       = require('fs');
+const Flower   = require('../models/flowerModel');
+const cloud    = require('../config/cloudinary');
 
-const addFlower = async (req, res) => {
+/* ── POST /api/flowers ─────────────────────────────────────────────── */
+exports.addFlower = async (req, res) => {
   try {
-    const { name, description, price, category, image } = req.body;
-    let imagePath = image;
+    const { title, price, description, category } = req.body;
 
-    // If an image file is uploaded, use Cloudinary
-    if (req.files && req.files.image) {
-      const file = req.files.image;
+    if (!req.file)
+      return res.status(400).json({ message: 'Image file is required' });
 
-       const uploaded = await cloud.uploader.upload(req.file.path, { folder: 'flowers' });
-    fs.unlinkSync(req.file.path);
+    const uploaded = await cloud.uploader.upload(req.file.path, {
+      folder: 'flowers',
+    });
+    fs.unlinkSync(req.file.path); // delete local temp file
 
-      imagePath = result.secure_url;
-    }
-
-    // Now create the flower with either the uploaded image OR the provided image URL
-    const newFlower = new Flower({
+    const flower = await Flower.create({
       title,
+      price,
       description,
-      price: parseFloat(price),
       category,
-      Image: result.secure_url,
+      Image: uploaded.secure_url,
     });
 
-    await newFlower.save();
-    res.status(201).json({ message: "Flower added successfully!", flower: newFlower });
-
-  } catch (error) {
-    console.error("❌ Error in addFlower:", error);
-    res.status(500).json({ message: "Error adding flower", error: error.message });
+    res.status(201).json(flower);
+  } catch (err) {
+    console.error('Error adding flower:', err);
+    res.status(500).json({ message: 'Error adding flower', error: err.message });
   }
 };
 
+/* ── GET /api/flowers ──────────────────────────────────────────────── */
+exports.getAllFlowers = (_, res) =>
+  Flower.find()
+    .then(data => res.json(data))
+    .catch(err =>
+      res.status(500).json({ message: 'Fetching flowers failed', error: err.message })
+    );
 
+/* ── GET /api/flowers/:id ──────────────────────────────────────────── */
+exports.getFlowerById = (req, res) =>
+  Flower.findById(req.params.id)
+    .then(flower =>
+      flower
+        ? res.json(flower)
+        : res.status(404).json({ message: 'Flower not found' })
+    )
+    .catch(err =>
+      res.status(500).json({ message: 'Error', error: err.message })
+    );
 
-const getAllFlowers = async (req, res) => {
+/* ── PATCH /api/flowers/:id ────────────────────────────────────────── */
+exports.updateFlower = async (req, res) => {
   try {
-    const flowers = await Flower.find();
+    const { title, price, description, category } = req.body;
+    const updateData = { title, price, description, category };
 
-    const formattedFlowers = flowers.map((flower) => {
-      const flowerObj = flower.toObject();
-
-      if (!flowerObj.image.startsWith("http")) {
-        flowerObj.image = `${process.env.SERVER_BASE_URL}${flowerObj.image}`;
-      }
-
-      return flowerObj;
-    });
-
-    res.json(formattedFlowers);
-  } catch (error) {
-    res.status(500).json({ message: error.message });
-  }
-};
-
-const getFlowerById = async (req, res) => {
-  const { id } = req.params;
-  try {
-    const flower = await Flower.findById(id);
-    if (!flower) return res.status(404).json({ message: 'Flower not found' });
-    res.status(200).json(flower);
-  } catch (error) {
-    res.status(500).json({ message: 'Server error', error });
-  }
-};
-
-
-// Function to delete a flower
-const deleteFlower = async (req, res) => {
-  try {
-    console.log(`🗑 Attempting to delete flower with ID: ${req.params.id}`);
-    const deletedFlower = await Flower.findByIdAndDelete(req.params.id);
-    if (!deletedFlower) {
-      console.error("Flower not found");
-      return res.status(404).json({ message: "Flower not found" });
-    }
-    console.log("✅ Flower deleted successfully:", deletedFlower);
-    res.json({ message: "Flower deleted successfully!" });
-  } catch (error) {
-    console.error("Error deleting flower:", error);
-    res
-      .status(500)
-      .json({ message: "Error deleting flower", error: error.message });
-  }
-};
-
-const updateFlower = async (req, res) => {
-  try {
-    const { id } = req.params;
-    const updatedData = req.body; 
-  if (req.file) {
-      const uploaded = await cloud.uploader.upload(req.file.path, { folder: 'flowers' });
+    if (req.file) {
+      const uploaded = await cloud.uploader.upload(req.file.path, {
+        folder: 'flowers',
+      });
       fs.unlinkSync(req.file.path);
       updateData.Image = uploaded.secure_url;
     }
-    // If an image file is uploaded, upload it to Cloudinary
-    if (req.files && req.files.image) {
-      const file = req.files.image;
-      const result = await cloudinary.uploader.upload(file.tempFilePath, {
-        folder: "flower_app_images",
-        use_filename: true,
-        unique_filename: false,
-      });
-      updatedData.image = result.secure_url;
-    }
 
-    const updatedFlower = await Flower.findByIdAndUpdate(id, updatedData, {
+    const flower = await Flower.findByIdAndUpdate(req.params.id, updateData, {
       new: true,
       runValidators: true,
     });
 
-    if (!updatedFlower) {
-      return res.status(404).json({ message: "Flower not found" });
-    }
-
-    res.status(200).json({ message: "Flower updated successfully", flower: updatedFlower });
-  } catch (error) {
-    console.error("❌ Error updating flower:", error);
-    res.status(500).json({ message: "Error updating flower", error: error.message });
+    if (!flower) return res.status(404).json({ message: 'Flower not found' });
+    res.json(flower);
+  } catch (err) {
+    res.status(500).json({ message: 'Error updating flower', error: err.message });
   }
 };
 
-
-// Ensures all the functions are exported
-module.exports = { addFlower, getAllFlowers, getFlowerById, deleteFlower, updateFlower };
+/* ── DELETE /api/flowers/:id ───────────────────────────────────────── */
+exports.deleteFlower = (req, res) =>
+  Flower.findByIdAndDelete(req.params.id)
+    .then(flower =>
+      flower
+        ? res.json({ message: 'Deleted' })
+        : res.status(404).json({ message: 'Flower not found' })
+    )
+    .catch(err =>
+      res.status(500).json({ message: 'Error', error: err.message })
+    );

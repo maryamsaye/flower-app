@@ -1,7 +1,8 @@
 // routes/flowers.js
 const express = require('express');
 const router  = express.Router();
-const upload   = require('../config/multerConfig');  
+const upload  = require('../config/multerConfig');     // <-- path now correct
+
 const {
   addFlower,
   getAllFlowers,
@@ -10,19 +11,10 @@ const {
   updateFlower,
 } = require('../controllers/flowerControllers');
 
-// GET /api/flowers
-router.get('/', getAllFlowers);
-
-// GET /api/flowers/:id
-router.get('/:id', getFlowerById);
-
-// POST /api/flowers  (express‑fileupload already parsed req.files)
-router.post('/', upload.single('Image'), addFlower);
-
-// DELETE /api/flowers/:id
+router.get('/',      getAllFlowers);
+router.get('/:id',   getFlowerById);
+router.post('/',     upload.single('Image'), addFlower);
+router.patch('/:id', upload.single('Image'), updateFlower);  // accept new image
 router.delete('/:id', deleteFlower);
-
-// PATCH /api/flowers/:id
-router.patch('/:id', updateFlower);
 
 module.exports = router;
