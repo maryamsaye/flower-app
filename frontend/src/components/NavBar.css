@@ -1,0 +1,166 @@
+/* =======================================================
+   NavBar ‑ mobile‑first, desktop content ≥ 992 px
+   ======================================================= */
+
+/* -------- 0. Variables (easy theming) ------------------ */
+:root {
+  --nav-bg: #ffffff;
+  --nav-border: #eeeeee;
+  --link: #222222;
+  --link-hover: #ce296d;
+  --backdrop: rgba(0, 0, 0, 0.5);
+}
+
+/* -------- 1. Global wrapper ---------------------------- */
+.utility-nav {
+  width: 100%;
+  background: var(--nav-bg);
+  border-bottom: 1px solid var(--nav-border);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  font-family: system-ui, sans-serif;
+}
+
+/* -------- 2. MOBILE / TABLET (default) ----------------- */
+
+/* Top bar: burger + cart */
+.mobile-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem 1rem;
+}
+
+/* Icon buttons */
+.menu-icon,
+.shop-icon,
+.close-menu-icon,
+.icon-button {
+  all: unset;              /* remove native button styles */
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+}
+
+/* Link resetting */
+.shop-icon { text-decoration: none; color: inherit; }
+
+/* Slide‑out overlay */
+.mobile-menu {
+  position: fixed;
+  inset: 0;
+  background: var(--backdrop);
+  display: flex;
+  z-index: 9999;
+}
+
+/* White side panel */
+.mobile-menu__panel {
+  background: #fff;
+  width: 75%;
+  max-width: 320px;
+  height: 100%;
+  padding: 5rem 1.5rem 2rem;
+  display: flex;
+  flex-direction: column;
+  animation: slideIn .3s ease-out forwards;
+}
+
+/* Close (X) button */
+.close-menu-icon {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  font-size: 1.25rem;
+}
+
+/* Menu links list */
+.menu-links {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.menu-links a {
+  color: var(--link);
+  text-decoration: none;
+  transition: color .2s;
+}
+.menu-links a:hover,
+.menu-links a:focus { color: var(--link-hover); }
+
+/* Social row pinned to bottom */
+.menu-socials {
+  margin-top: auto;
+  display: flex;
+  gap: .75rem;
+}
+.icon-button {
+  border: 1px solid #ddd;
+  border-radius: 50%;
+  padding: .6rem;
+  transition: background .2s;
+}
+.icon-button:hover,
+.icon-button:focus { background: #f7f7f7; }
+
+/* Slide‑in keyframes */
+@keyframes slideIn {
+  from { transform: translateX(-100%); }
+  to   { transform: translateX(0);     }
+}
+
+/* Hide all desktop‑only markup by default */
+.desktop-nav { display: none; }
+
+/* -------- 3. DESKTOP (≥ 992 px) ------------------------ */
+@media (min-width: 992px) {
+
+  /* Turn off the mobile pieces */
+  .mobile-nav,
+  .mobile-menu { display: none !important; }
+
+  /* Reveal the desktop bar */
+  .desktop-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem 1rem;
+  }
+
+  /* Left & right clusters */
+  .utility-left,
+  .nav-right {
+    display: flex;
+    gap: 1.5rem;
+  }
+
+  /* Links inside clusters */
+  .nav-box,
+  .cart {
+    position: relative;
+    text-decoration: none;
+    color: var(--link);
+    font-weight: 500;
+  }
+
+  /* Underline on hover */
+  .nav-box::after,
+  .cart::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -4px;
+    height: 2px;
+    width: 0;
+    background: var(--link-hover);
+    transition: width .25s;
+  }
+  .nav-box:hover::after,
+  .cart:hover::after,
+  .nav-box:focus::after,
+  .cart:focus::after { width: 100%; }
+}
