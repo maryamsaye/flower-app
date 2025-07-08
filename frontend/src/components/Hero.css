@@ -1,0 +1,143 @@
+/* ---------- Hero.css (square cards, centred headings) ---------- */
+
+/* 1. Section wrapper */
+.hero-section {
+  display: flex;
+  flex-direction: column;          /* mobile: stack columns */
+  gap: 2rem;
+  padding: 2rem 1.25rem;
+  font-family: "Inter", sans-serif;
+}
+
+/* 2. Left column -------------------------------------------------- */
+.hero-left {
+  display: flex;
+  flex-direction: column;
+  align-items: center;             /* centre headline & subhead on phones/tablets */
+  text-align: center;
+}
+
+.hero-left h1 {
+  font-size: 2.6rem;
+  line-height: 1.15;
+  margin: 0 0 1rem;
+}
+
+.subheading {
+  font-size: 1rem;
+  color: #555;
+  margin-bottom: 1.75rem;
+  max-width: 28rem;
+}
+
+/* florist‑info card (matches category‑pair) */
+.florist-info {
+  width: 100%;
+  display: flex;
+  align-items: stretch;
+   border: 1px solid #121212;
+  border-radius: 0;
+  overflow: hidden;
+  margin-left: auto;               /* right‑align on small screens */
+  margin-top: 1.6rem;              /* space below subheading */
+}
+
+.florist-info img {
+  width: 45%;                      /* same width as .image-card */
+  object-fit: cover;
+   border: 1px solid #121212;
+}
+
+.florist-info p {
+  flex: 1;
+  padding: 1rem 1.1rem;
+  display: flex;
+  align-items: center;             /* centre vertically */
+  text-align: center;
+}
+
+/* 3. Right column ------------------------------------------------- */
+.hero-right {
+  display: grid;
+  grid-template-columns: 1fr;      /* ALWAYS one pair per line */
+  gap: 1.6rem;
+}
+
+/* Each category pair */
+.category-pair {
+  display: flex;
+  flex-direction: row;             /* text left, image right */
+  align-items: stretch;
+   border: 1px solid #121212;
+  border-radius: 0;
+  overflow: hidden;
+}
+
+.category-pair.centered { justify-content: center; }
+
+/* Text card */
+.text-card {
+  flex: 1;
+  padding: 1rem 1.1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;             /* centre horizontally */
+  text-align: center;
+}
+
+.text-card h4 {
+  margin: auto 0;                  /* centre vertically */
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.shop-now-btn {
+  margin-top: auto;                /* pin to bottom */
+  font-size: 0.9rem;
+  text-decoration: none;
+  color: #1a1a1a;
+  transition: opacity 0.25s;
+}
+.shop-now-btn:hover { opacity: 0.7; }
+
+/* Image card */
+.image-card {
+  width: 45%;
+  display: flex;
+  border-right: 1px solid black; /* separator line */
+}
+.image-card img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  border-radius: 0;
+}
+
+/* 4. Tablet breakpoint ------------------------------------------- */
+@media (min-width: 768px) {
+  .hero-left h1 { font-size: 3rem; }
+
+  /* florist card drops to bottom of left column */
+  .florist-info { margin-top: auto; }
+}
+
+/* 5. Desktop breakpoint ------------------------------------------ */
+@media (min-width: 1024px) {
+  .hero-section {
+    flex-direction: row;           /* side‑by‑side columns */
+    align-items: flex-start;
+  }
+
+  .hero-left {
+    flex: 1;
+    align-items: flex-start;       /* headline left‑aligned on desktop */
+    text-align: left;
+  }
+
+  .hero-right { flex: 1; }
+}
+
+/* 6. Large desktop tweak ----------------------------------------- */
+@media (min-width: 1400px) {
+  .hero-left h1 { font-size: 3.6rem; }
+}
