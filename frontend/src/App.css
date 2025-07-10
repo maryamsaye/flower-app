@@ -2,6 +2,53 @@
   text-align: center;
 }
 
+
+/* ===============================
+   GLOBAL CSS FIXES
+   =============================== */
+
+/* 1. Apply box-sizing globally */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+/* 2. Prevent horizontal scroll */
+body {
+  overflow-x: hidden;
+  margin: 0;
+  padding: 0;
+}
+
+/* 3. Restrict full-width sections */
+.section,
+.hero-section,
+.us-section {
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+/* 4. Ensure flex/grid elements wrap properly */
+.hero-section,
+.about-section {
+  flex-wrap: wrap;
+  overflow-x: hidden;
+}
+
+/* 5. Extra safety for image-containing pairs */
+.category-pair,
+.image-card {
+  max-width: 100%;
+  overflow: hidden;
+}
+
+/* 6. Optional: remove default spacing */
+html, body {
+  padding: 0;
+  margin: 0;
+}
+
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;

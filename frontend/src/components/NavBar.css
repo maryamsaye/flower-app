@@ -5,10 +5,15 @@
 /* -------- 0. Variables (easy theming) ------------------ */
 :root {
   --nav-bg: #ffffff;
-  --nav-border: #eeeeee;
+  /* --nav-border: #eeeeee; */
   --link: #222222;
   --link-hover: #ce296d;
   --backdrop: rgba(0, 0, 0, 0.5);
+}
+
+.utility-nav{
+  border: 1px solid black;
+  border-bottom: 1px solid black;
 }
 
 /* -------- 1. Global wrapper ---------------------------- */

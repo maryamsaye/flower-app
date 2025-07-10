@@ -3,17 +3,20 @@
 /* 1. Section wrapper */
 .hero-section {
   display: flex;
-  flex-direction: column;          /* mobile: stack columns */
+  flex-direction: column;   /* mobile: stack columns */
+  flex-wrap: wrap;          /* ✅ prevent overflow */
   gap: 2rem;
-  padding: 2rem 1.25rem;
+  /* padding: 2rem 1.25rem; */
   font-family: "Inter", sans-serif;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
-/* 2. Left column -------------------------------------------------- */
+/* 2. Left column */
 .hero-left {
   display: flex;
   flex-direction: column;
-  align-items: center;             /* centre headline & subhead on phones/tablets */
+  align-items: center;
   text-align: center;
 }
 
@@ -30,50 +33,53 @@
   max-width: 28rem;
 }
 
-/* florist‑info card (matches category‑pair) */
+/* Florist info card */
 .florist-info {
   width: 100%;
   display: flex;
   align-items: stretch;
-   border: 1px solid #121212;
+  border: 1px solid #121212;
   border-radius: 0;
   overflow: hidden;
-  margin-left: auto;               /* right‑align on small screens */
-  margin-top: 1.6rem;              /* space below subheading */
+  margin-top: 1.6rem;
 }
 
 .florist-info img {
-  width: 45%;                      /* same width as .image-card */
+  width: 45%;
   object-fit: cover;
-   border: 1px solid #121212;
+  border: 1px solid #121212;
 }
 
 .florist-info p {
   flex: 1;
   padding: 1rem 1.1rem;
   display: flex;
-  align-items: center;             /* centre vertically */
+  align-items: center;
   text-align: center;
 }
 
-/* 3. Right column ------------------------------------------------- */
+/* 3. Right column */
 .hero-right {
   display: grid;
-  grid-template-columns: 1fr;      /* ALWAYS one pair per line */
+  grid-template-columns: 1fr;
   gap: 1.6rem;
+  width: 100%;
 }
 
 /* Each category pair */
 .category-pair {
   display: flex;
-  flex-direction: row;             /* text left, image right */
+  flex-direction: row;
   align-items: stretch;
-   border: 1px solid #121212;
+  border: 1px solid #121212;
   border-radius: 0;
   overflow: hidden;
+  max-width: 100%; /* ✅ prevent horizontal overflow */
 }
 
-.category-pair.centered { justify-content: center; }
+.category-pair.centered {
+  justify-content: center;
+}
 
 /* Text card */
 .text-card {
@@ -81,31 +87,36 @@
   padding: 1rem 1.1rem;
   display: flex;
   flex-direction: column;
-  align-items: center;             /* centre horizontally */
+  align-items: center;
   text-align: center;
 }
 
 .text-card h4 {
-  margin: auto 0;                  /* centre vertically */
+  margin: auto 0;
   font-size: 1rem;
   font-weight: 600;
 }
 
 .shop-now-btn {
-  margin-top: auto;                /* pin to bottom */
+  margin-top: auto;
   font-size: 0.9rem;
   text-decoration: none;
   color: #1a1a1a;
   transition: opacity 0.25s;
 }
-.shop-now-btn:hover { opacity: 0.7; }
+
+.shop-now-btn:hover {
+  opacity: 0.7;
+}
 
 /* Image card */
 .image-card {
   width: 45%;
   display: flex;
-  border-right: 1px solid black; /* separator line */
+  border-right: 1px solid black;
+  max-width: 100%; /* ✅ overflow-safe */
 }
+
 .image-card img {
   width: 100%;
   height: auto;
@@ -113,31 +124,38 @@
   border-radius: 0;
 }
 
-/* 4. Tablet breakpoint ------------------------------------------- */
+/* 4. Tablet (≥768px) */
 @media (min-width: 768px) {
-  .hero-left h1 { font-size: 3rem; }
+  .hero-left h1 {
+    font-size: 3rem;
+  }
 
-  /* florist card drops to bottom of left column */
-  .florist-info { margin-top: auto; }
+  .florist-info {
+    margin-top: auto;
+  }
 }
 
-/* 5. Desktop breakpoint ------------------------------------------ */
+/* 5. Desktop (≥1024px) */
 @media (min-width: 1024px) {
   .hero-section {
-    flex-direction: row;           /* side‑by‑side columns */
+    flex-direction: row;
     align-items: flex-start;
   }
 
   .hero-left {
     flex: 1;
-    align-items: flex-start;       /* headline left‑aligned on desktop */
+    align-items: flex-start;
     text-align: left;
   }
 
-  .hero-right { flex: 1; }
+  .hero-right {
+    flex: 1;
+  }
 }
 
-/* 6. Large desktop tweak ----------------------------------------- */
+/* 6. Large Desktop (≥1400px) */
 @media (min-width: 1400px) {
-  .hero-left h1 { font-size: 3.6rem; }
+  .hero-left h1 {
+    font-size: 3.6rem;
+  }
 }
