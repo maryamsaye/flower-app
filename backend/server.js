@@ -13,6 +13,8 @@ const PORT = process.env.PORT || 4001;
 app.use(cors({
   origin: [
     'http://localhost:3000',
+    'http://localhost:3001',
+    'http://localhost:3002',
     'https://flower-frontend-dggg.onrender.com',
   ],
   methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'],

@@ -7,6 +7,7 @@ const cloud    = require('../config/cloudinaryConfig');
 exports.addFlower = async (req, res) => {
   try {
     const { title, price, description, category } = req.body;
+    
 
     if (!req.file)
       return res.status(400).json({ message: 'Image file is required' });
