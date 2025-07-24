@@ -7,6 +7,7 @@ const {
   getFlowerById,
   deleteFlower,
   updateFlower,
+  getRandomFlowers,
 } = require('../controllers/flowerControllers');
 
 
@@ -25,7 +26,7 @@ const storage = new CloudinaryStorage({
 });
 
 const upload = multer({ storage });
-
+router.get("/random", getRandomFlowers);
 router.get('/',      getAllFlowers);
 router.get('/:id',   getFlowerById);
 router.post('/',     upload.single('Image'), addFlower);

@@ -89,3 +89,13 @@ exports.deleteFlower = (req, res) =>
     .catch(err =>
       res.status(500).json({ message: 'Error', error: err.message })
     );
+
+    exports. getRandomFlowers = async (req, res) => {
+  try {
+    const flowers = await Flower.aggregate([{ $sample: { size: 4 } }]);
+    res.json({ flowers });
+  } catch (error) {
+    res.status(500).json({ message: "Failed to fetch suggested flowers." });
+  }
+};
+

@@ -4,6 +4,10 @@ const mongoose      = require('mongoose');
 const cors          = require('cors');
 const flowersRouter = require('./routes/flowers');
 const userRouter    = require('./routes/users');
+const passport = require("passport");
+const path = require("path");
+const stripeRoutes = require("./routes/stripe");
+require("./config/passport");
 require('dotenv').config();
 
 const app  = express();

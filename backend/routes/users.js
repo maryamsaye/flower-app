@@ -1,15 +1,18 @@
-const express = require('express');
-
+const express = require("express");
 const router = express.Router();
+const requireAuth = require("../config/authMiddleware");
 
-const { loginUser, signupUser, getAllUsers } = require('../controllers/userControllers');
+const {
+  userSignUp,
+  userLogin,
+  getAllUsers,
+} = require("../controllers/userControllers");
 
-
-
-router.post('/login', loginUser);
-
-router.post('/signup', signupUser);
-
-router.get('/getusers', getAllUsers);
+router.post("/signup", userSignUp);
+router.post("/signin", userLogin);
+router.get("/", getAllUsers);
+router.get("/protected", requireAuth, (req, res) => {
+  res.json({ message: "Protected data", userId: req.user.id });
+});
 
 module.exports = router;
