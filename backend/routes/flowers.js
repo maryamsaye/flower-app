@@ -1,8 +1,6 @@
 // routes/flowers.js
 const express = require('express');
 const router  = express.Router();
-const upload  = require('../config/multerConfig');     // <-- path now correct
-
 const {
   addFlower,
   getAllFlowers,
@@ -10,6 +8,23 @@ const {
   deleteFlower,
   updateFlower,
 } = require('../controllers/flowerControllers');
+
+
+const { CloudinaryStorage } = require("multer-storage-cloudinary");
+
+
+// Multer and cloudinary setup
+
+const storage = new CloudinaryStorage({
+  cloudinary,
+  params: {
+    folder: "flowers", 
+    allowed_formats: ["jpg", "jpeg", "png", "gif", "webp"],
+    public_id: (req, file) => `${Date.now()}-${file.originalname}`,
+  },
+});
+
+const upload = multer({ storage });
 
 router.get('/',      getAllFlowers);
 router.get('/:id',   getFlowerById);
