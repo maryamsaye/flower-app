@@ -22,7 +22,7 @@ exports.addFlower = async (req, res) => {
       price,
       description,
       category,
-      Image: uploaded.secure_url,
+      Image: url,
     });
 
     res.status(201).json(flower);
@@ -45,7 +45,7 @@ exports.getFlowerById = (req, res) =>
   Flower.findById(req.params.id)
     .then(flower =>
       flower
-        ? res.json(flower)
+        ? res.json({flower})
         : res.status(404).json({ message: 'Flower not found' })
     )
     .catch(err =>
