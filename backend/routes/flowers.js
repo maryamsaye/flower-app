@@ -1,4 +1,7 @@
 // routes/flowers.js
+const cloudinary = require("../config/cloudinaryConfig");
+const multer = require('multer');
+
 const express = require('express');
 const router  = express.Router();
 const {
@@ -11,19 +14,39 @@ const {
 } = require('../controllers/flowerControllers');
 
 
-const { CloudinaryStorage } = require("multer-storage-cloudinary");
 
 
 // Multer and cloudinary setup
 
-const storage = new CloudinaryStorage({
-  cloudinary,
-  params: {
-    folder: "flowers", 
-    allowed_formats: ["jpg", "jpeg", "png", "gif", "webp"],
-    public_id: (req, file) => `${Date.now()}-${file.originalname}`,
-  },
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => cb(null, 'uploads/'),
+  filename: (req, file, cb) => cb(null, Date.now() + path.extname(file.originalname)),
 });
+
+
+const createFlower = async (req, res) => {
+  try {
+    const file = req.file;
+
+    // Upload to Cloudinary
+    const result = await cloudinary.uploader.upload(file.path, {
+      folder: 'flowers',
+    });
+
+    // Delete file locally after upload
+    fs.unlinkSync(file.path);
+
+    // Save image URL (result.secure_url)
+    res.status(201).json({
+      message: 'Uploaded successfully',
+      imageUrl: result.secure_url,
+    });
+
+  } catch (error) {
+    res.status(500).json({ error: 'Upload failed', details: error.message });
+  }
+};
+
 
 const upload = multer({ storage });
 router.get("/random", getRandomFlowers);
