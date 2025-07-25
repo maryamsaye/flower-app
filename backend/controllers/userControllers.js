@@ -1,44 +1,52 @@
+// backend/controllers/userController.js
+
 const User = require('../models/userModel');
 const jwt = require('jsonwebtoken');
 
 const createToken = (id) => {
-    console.log("SECRET:", process.env.SECRET);
-
-return jwt.sign({id}, process.env.SECRET, {expiresIn: '1day'})
-}
-
-const loginUser = async (req, res) => {
-    res.json({mssg: "Login user"})
-}
-
-const signupUser = async (req, res) => {
-    const {Email, Password} = req.body
-try {
-    const user = await User.signUp(Email, Password)
-
-    // create a token
-    const token = createToken(user.id)
-
-    // updated code
-    res.status(201).json({ message: 'User created' });
-
-
-} catch (error) {
-    res.status(400).json({error: error.message})
-}
-
-}
-
-// Get all users
-const getAllUsers = async (req, res) => {
-    try {
-      const users = await User.find({}, 'Email Password token'); // only select specific fields
-
-    res.status(200).json(users);
-    } catch (err) {
-    res.status(500).json({ error: 'Server error', details: err.message });
-    }
+  return jwt.sign({ id }, process.env.SECRET, { expiresIn: '1d' });
 };
 
+const loginUser = async (req, res) => {
+  res.json({ message: "Login user" });
+};
 
-module.exports = {loginUser, signupUser, getAllUsers}
+const signupUser = async (req, res) => {
+  const { name, email, password } = req.body;
+
+  try {
+    // Check if email already exists
+    const existingUser = await User.findOne({ email });
+    if (existingUser) {
+      return res.status(400).json({ error: 'Email already in use' });
+    }
+
+    const user = new User({ name, email, password });
+    await user.save();
+
+    const token = createToken(user._id);
+
+    res.status(201).json({
+      message: 'User created',
+      data: {
+        id: user._id,
+        name: user.name,
+        email: user.email,
+        token,
+      },
+    });
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+};
+
+const getAllUsers = async (req, res) => {
+  try {
+    const users = await User.find({}, 'name email'); // Return only selected fields
+    res.status(200).json(users);
+  } catch (err) {
+    res.status(500).json({ error: 'Server error', details: err.message });
+  }
+};
+
+module.exports = { loginUser, signupUser, getAllUsers };

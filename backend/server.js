@@ -24,7 +24,6 @@ app.use(cors({
   methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'],
   credentials: true,
 }));
-app.options('*', cors());
 
 /* ----------  Body parsers  ----------------------------------------- */
 app.use(express.json());
