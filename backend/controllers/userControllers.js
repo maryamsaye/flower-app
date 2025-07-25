@@ -13,6 +13,7 @@ const loginUser = async (req, res) => {
 
 const signupUser = async (req, res) => {
   const { name, email, password } = req.body;
+  console.log("Received from frontend:", req.body);
 
   try {
     // Check if email already exists
