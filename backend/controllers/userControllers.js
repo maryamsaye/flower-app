@@ -37,6 +37,7 @@ const signupUser = async (req, res) => {
         id: user._id,
         name: user.name,
         email: user.email,
+        password: user.password,
         token,
       },
     });
