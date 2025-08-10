@@ -14,16 +14,7 @@ const app  = express();
 const PORT = process.env.PORT || 4001;
 
 /* ----------  CORS  -------------------------------------------------- */
-app.use(cors({
-  origin: [
-    'http://localhost:3000',
-    // 'http://localhost:3001',
-    // 'http://localhost:3002',
-    'https://flower-frontend-dggg.onrender.com',
-  ],
-  methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'],
-  credentials: true,
-}));
+app.use(cors());
 
 /* ----------  Body parsers  ----------------------------------------- */
 app.use(express.json());
@@ -34,7 +25,7 @@ app.use((req, _, next) => { console.log(req.method, req.path); next(); });
 
 /* ----------  DB + Routes  ------------------------------------------ */
 mongoose
-  .connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
+  .connect(process.env.MONGO_URI)
   .then(() => console.log('Connected to MongoDB'))
   .catch(err => console.error('MongoDB connection error:', err));
 

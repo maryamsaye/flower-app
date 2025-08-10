@@ -12,6 +12,7 @@ const signupUser = async (req, res) => {
 
   const { name, email, password } = req.body;
 
+
   // Validate required fields
   if (!name || !email || !password) {
     return res.status(400).json({ error: 'All fields must be filled' });
@@ -19,13 +20,20 @@ const signupUser = async (req, res) => {
 
   try {
     // Check if email already exists
-    const existingUser = await User.findOne({ email });
-    if (existingUser) {
-      return res.status(400).json({ error: 'Email already in use' });
-    }
+    //         console.log(name)
+
+    // const existingUser = await User.findOne({ email });
+    //         console.log(password)
+
+    // if (existingUser) {
+    //   return res.status(400).json({ error: 'Email already in use' });
+    // }
 
     // Create and save new user
+
     const user = new User({ name, email, password });
+              console.log(email)
+
     await user.save();
 
     // Create token
@@ -37,7 +45,6 @@ const signupUser = async (req, res) => {
         id: user._id,
         name: user.name,
         email: user.email,
-        password: user.password,
         token,
       },
     });
