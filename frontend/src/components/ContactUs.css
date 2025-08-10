@@ -1,155 +1,386 @@
-/* ---------- General Layout ---------- */
-.section {
-  padding: 2rem 1rem;
-  background-color: #fdfdfd;
+.kyiv-pic {
+    width: 100%;
+}
+.kyiv-pic img {
+    width: 100%;
 }
 
-/* ---------- Contact Form Section ---------- */
-.contact-form-section {
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
-}
-
-/* ---------- Right Column (Shop image + Socials) ---------- */
-.form-right {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  border: 1px solid #000;
-  padding: 1rem;
-}
-
-.form-right img {
-  width: 100%;
-  max-width: 400px;
-  height: auto;
-  object-fit: cover;
-}
-
-/* ---------- Socials ---------- */
 .follow {
-  text-align: center;
-  margin-top: 1rem;
+    width: 100%;
+    border-bottom: 1px solid #121212;
 }
 
 .follow h3 {
-  font-size: 1.2rem;
-  margin-bottom: 0.5rem;
+    width: 90%;
+    margin: 0 auto;
+    margin-top: 10px;
+    font-family: 'Gilroy';
+    font-weight: 500;
+    font-style: Medium;
+    font-size: 26px;
+    height: 100%;
 }
 
-.social-icons {
-  display: flex;
-  gap: 1rem;
-  justify-content: center;
-  margin-top: 0.5rem;
+.social {
+    width: 90%;
+    margin: 0 auto;
 }
 
-.social-icons a {
-  color: #000;
-  font-size: 1.5rem;
-  transition: color 0.3s ease;
+.follow-ic img {
+    margin: 20px 10px 10px 0px;
 }
 
-.social-icons a:hover {
-  color: #ce296d;
+.top {
+    width: 90%;
+    margin: auto;
+    padding-top: 20px;
 }
 
-/* ---------- Left Column (Form Section) ---------- */
-.form-left {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
+.top h2 {
+    padding: 20px 0;
+    font-family: 'Gilroy';
+    font-weight: 600;
+    font-style: 'Semibold';
+    font-size: 34px;
 }
 
-.form-left h2 {
-  font-size: 1.5rem;
-  font-weight: bold;
+.top label {
+    font-family: 'Gilroy';
+    font-weight: 500;
+    font-style: Medium;
+    font-size: 18px;
 }
 
-.form-description {
-  color: #555;
-  font-size: 1rem;
-  line-height: 1.5;
+.phone-div h3 {
+    width: 90%;
+    margin: auto;
+    padding: 40px 0;
+    font-family: 'Gilroy';
+    font-weight: 500;
+    font-style: Medium;
+    font-size: 26px;
 }
 
-/* Phone Form */
-.phone-form {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
+.phone-div {
+    border-bottom: 1px solid #121212;
 }
 
-.phone-form input {
-  padding: 0.75rem 1rem;
-  border: 1px solid #ccc;
-  font-size: 1rem;
-  width: 100%;
+.phone-no1 {
+    display: flex;
+    gap: 10px;
+    width: 90%;
+    margin: auto;
+    padding: 30px 0 0 0;
 }
 
-.phone-form button {
-  padding: 0.75rem 1rem;
-  background-color: #000;
-  color: #fff;
-  border: none;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
+.phone-no1 h5 {
+    font-family: 'Gilroy';
+    font-weight: 600;
+    font-style: 'Semibold';
+    font-size: 16px;
 }
 
-.phone-form button:hover {
-  background-color: #333;
+.phone-no {
+    margin-bottom: 30px;
+}
+.address-div h3 {
+    padding: 50px 0 50px 0;
+    width: 90%;
+    margin: auto;
+    font-family: 'Gilroy';
+    font-weight: 500;
+    font-style: Medium;
+    font-size: 26px;
 }
 
-/* Contact Details */
-.contact-details {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
+.loc {
+    display: flex;
+    gap: 10px;
+    margin: 10px 0;
 }
 
-.detail-block h4 {
-  font-size: 1rem;
-  margin-bottom: 0.25rem;
+.address- h5 {
+    width: 90%;
+    margin: auto;
+    padding: 30px 0 15px 0;
+    font-family: Gilroy;
+    font-weight: 500;
+    font-style: Medium;
+    font-size: 12px;
 }
 
-.detail-block p {
-  margin: 0.2rem 0;
-  color: #444;
-  font-size: 0.95rem;
+.loc {
+    width: 90%;
+    margin: auto;
+    margin-bottom: 30px;
 }
 
-/* ---------- Desktop Layout (≥1024px) ---------- */
+.loc h6 {
+    font-family: 'Gilroy';
+    font-weight: 600;
+    font-style: 'Semibold';
+    font-size: 14px;
+}
+
+.contact-main {
+    border: 1px solid #121212;
+}
+
+.bottom-block {
+    border-top: 1px solid #121212;
+
+}
+
+.address-div {
+    border-bottom: 1px solid #121212;
+    border-top: 1px solid #121212;
+}
+
+@media (min-width: 768px) {
+    .follow {
+        display: flex;
+    }
+    .follow h3 {
+        width: 100%;
+        text-align: center;
+        margin-top: -4px;
+        border-right: 1px solid #121212;
+        padding-top: 20px;
+        height: auto;
+    }
+
+    .follow-ic {
+        width: 100%;
+        text-align: center;
+        height: auto;
+    }
+
+    .follow-ic img {
+        margin-right: 30px;
+    }
+
+    .call-block {
+        display: flex;
+        margin-top: 20px;
+        gap: 20px;
+    }
+
+    .top h2 {
+        font-family: 'Gilroy';
+        font-weight: 600;
+        font-style: 'Semibold';
+        font-size: 50px;
+        line-height: 120%;
+        letter-spacing: 0%;
+        vertical-align: middle;
+    }
+
+    .bottom-block {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: auto auto;
+    }
+
+    .phone-div {
+        grid-column: 1;
+        grid-row: 1;
+    }
+
+    .phone-div h3 {
+        width: 100%;
+        text-align: center;
+        margin-top: 12px;
+        font-size: 1.6rem;
+    }
+
+    .address-div {
+        grid-column: 2;
+        grid-row: 1;
+        border-top: none;
+        border-left: 1px solid #121212;
+    }
+    .address-div h3 {
+        width: 100%;
+        text-align: center;
+        font-size: 1.6rem;
+    }
+
+    .phone-no {
+        grid-column: 1;
+        grid-row: 2;
+        margin: 0 auto;
+        padding: 30px 0;
+    }
+
+
+    .address {
+        grid-column: 2;
+        grid-row: 2;
+        border-left: 1px solid #121212; 
+        margin: 0 auto;
+        width: 100%;
+        padding: 30px 0;
+    }
+
+    .address h5{
+        margin-bottom: 20px;
+        width: 100%;
+        text-align: center;
+        font-size: 1.5rem;
+    }
+    .address h6{
+        width: 100%;
+        text-align: center;
+        margin-left: -70px;
+    }
+
+    .address img {
+        padding-left: 70px;
+    }
+
+    .top label {
+        font-size: 1.3rem;
+    }
+
+    .loc {
+        gap: 0;
+    }
+}
+
 @media (min-width: 1024px) {
-  .contact-form-section {
+
+    .contact-main {
+        display: flex;
+        flex-direction: row-reverse;
+        align-items: stretch;
+    }
+
+    .kyiv,
+    .to-contact {
+        display: flex;
+        flex-direction: column;
+    }
+    .bottom-block {
+        height: auto;
+    }
+
+    .kyiv {
+        width: 100%;
+    }
+    .to-contact {
+        width: 100%;
+    }
+
+    .follow-ic img {
+        margin-right: 5px;
+        width: 15%;
+    }
+    .follow {
+        border-bottom: none;
+        height: auto;
+
+    }
+    .loc {
+        margin-bottom: 0px;
+    }
+
+    .loc img {
+        padding-left: 20px;
+    }
+    .loc h6 {
+        margin-left: 0px;
+    }
+
+    
+    /* .follow h3 {
+        border-left: 1px solid #121212;
+        font-size: 1.8rem;
+    } */
+
+    .phone-div h3 {
+        font-size: 1.9rem;
+    }
+    .address-div h3 {
+        font-size: 1.9rem;
+    }
+
+    .phone-no1 h5 {
+        font-size: 1.3rem;
+    }
+
+    .phone-no {
+        padding: 0;
+    }
+
+    .loc h6 {
+        font-size: 1.3rem;
+    }
+    .address-loc {
+        padding: 0;
+        margin: 0;
+    }
+
+    .address-loc h5 {
+        padding: 0;
+    }
+
+    .phone-no {
+        padding: 40px 0;
+        
+    }
+
+    .address-loc {
+        padding: 40px 0;
+    }
+
+    .kyiv-follow {
+    height: 100%;
+    display: flex;
     flex-direction: row;
-    align-items: flex-start;
-    justify-content: space-between;
-  }
+    align-items: stretch;
+    border-bottom: none;
+}
 
-  .form-left, .form-right {
-    flex: 1;
-  }
+.follow h3 {
+    border-left: 1px solid #121212;
+    font-size: 1.8rem;
+    margin: 0;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 0px;
+}
 
-  .form-right {
-    align-items: flex-start;
-    padding: 2rem;
-  }
+.follow-ic {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 10px;
+}
 
-  .form-right img {
-    width: 100%;
-    height: auto;
-  }
 
-  .follow {
-    text-align: left;
-  }
+}
 
-  .social-icons {
-    justify-content: flex-start;
-  }
+@media (min-width: 1440px) {
+    .loc img {
+        padding-left: 30px;
+    }
 
-  .form-left {
-    padding-right: 2rem;
-  }
+    .loc h6 {
+        margin-left: 0px;
+        font-size: 1.3rem;
+    }
+
+    .address-loc {
+        height: auto;
+    }
+
+    .follow h3 {
+        height: auto;
+    }
+
+    .follow-ic img {
+        margin-right: 15px;
+    }
 }

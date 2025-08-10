@@ -1,171 +1,122 @@
-/* =======================================================
-   NavBar ‑ mobile‑first, desktop content ≥ 992 px
-   ======================================================= */
-
-/* -------- 0. Variables (easy theming) ------------------ */
-:root {
-  --nav-bg: #ffffff;
-  /* --nav-border: #eeeeee; */
-  --link: #222222;
-  --link-hover: #ce296d;
-  --backdrop: rgba(0, 0, 0, 0.5);
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
 }
 
-.utility-nav{
-  border: 1px solid black;
-  border-bottom: 1px solid black;
+
+.burger-link{
+    text-decoration: none;
+    color: #121212;
 }
-
-/* -------- 1. Global wrapper ---------------------------- */
-.utility-nav {
-  width: 100%;
-  background: var(--nav-bg);
-  border-bottom: 1px solid var(--nav-border);
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-  font-family: system-ui, sans-serif;
+.header-desk {
+    display: none;
 }
-
-/* -------- 2. MOBILE / TABLET (default) ----------------- */
-
-/* Top bar: burger + cart */
-.mobile-nav {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0.75rem 1rem;
-}
-
-/* Icon buttons */
-.menu-icon,
-.shop-icon,
-.close-menu-icon,
-.icon-button {
-  all: unset;              /* remove native button styles */
-  cursor: pointer;
-  display: grid;
-  place-items: center;
-}
-
-/* Link resetting */
-.shop-icon { text-decoration: none; color: inherit; }
-
-/* Slide‑out overlay */
-.mobile-menu {
-  position: fixed;
-  inset: 0;
-  background: var(--backdrop);
-  display: flex;
-  z-index: 9999;
-}
-
-/* White side panel */
-.mobile-menu__panel {
-  background: #fff;
-  width: 75%;
-  max-width: 320px;
-  height: 100%;
-  padding: 5rem 1.5rem 2rem;
-  display: flex;
-  flex-direction: column;
-  animation: slideIn .3s ease-out forwards;
-}
-
-/* Close (X) button */
-.close-menu-icon {
-  position: absolute;
-  top: 1rem;
-  right: 1rem;
-  font-size: 1.25rem;
-}
-
-/* Menu links list */
-.menu-links {
-  display: flex;
-  flex-direction: column;
-  gap: 1.25rem;
-  font-size: 1rem;
-  font-weight: 500;
-}
-
-.menu-links a {
-  color: var(--link);
-  text-decoration: none;
-  transition: color .2s;
-}
-.menu-links a:hover,
-.menu-links a:focus { color: var(--link-hover); }
-
-/* Social row pinned to bottom */
-.menu-socials {
-  margin-top: auto;
-  display: flex;
-  gap: .75rem;
-}
-.icon-button {
-  border: 1px solid #ddd;
-  border-radius: 50%;
-  padding: .6rem;
-  transition: background .2s;
-}
-.icon-button:hover,
-.icon-button:focus { background: #f7f7f7; }
-
-/* Slide‑in keyframes */
-@keyframes slideIn {
-  from { transform: translateX(-100%); }
-  to   { transform: translateX(0);     }
-}
-
-/* Hide all desktop‑only markup by default */
-.desktop-nav { display: none; }
-
-/* -------- 3. DESKTOP (≥ 992 px) ------------------------ */
-@media (min-width: 992px) {
-
-  /* Turn off the mobile pieces */
-  .mobile-nav,
-  .mobile-menu { display: none !important; }
-
-  /* Reveal the desktop bar */
-  .desktop-nav {
+.header-icons {
     display: flex;
     justify-content: space-between;
-    align-items: center;
-    padding: 0.75rem 1rem;
-  }
+    border: 1px solid #121212;
+}
 
-  /* Left & right clusters */
-  .utility-left,
-  .nav-right {
-    display: flex;
-    gap: 1.5rem;
-  }
+.header-ic {
+    border: 1px solid #121212;
+    width: 10%;
+}
 
-  /* Links inside clusters */
-  .nav-box,
-  .cart {
-    position: relative;
+.ham {
+    padding: 5px 0px;
+    text-align: center;
+    font-size: 1.1rem;
+    border-right: 2px solid #121212 ;
+}
+
+.shopbag {
+    border-left: 2px solid #121212 ;
+    padding-top: 5px;
+    text-align: center;
+    font-size: 1.1rem;
+}
+
+.mobile-ham li {
+    padding: 10px;
+    background-color: #808080;
+    text-align: center;
+    
+}
+
+.mobile-ham {
+    width: 200px;
+    margin:  0 auto;
+}
+
+.mobile-ham a {
     text-decoration: none;
-    color: var(--link);
-    font-weight: 500;
-  }
+    color: #121212;
+    display: block; 
+    cursor: pointer;
+}
 
-  /* Underline on hover */
-  .nav-box::after,
-  .cart::after {
-    content: '';
-    position: absolute;
-    left: 0;
-    bottom: -4px;
-    height: 2px;
-    width: 0;
-    background: var(--link-hover);
-    transition: width .25s;
-  }
-  .nav-box:hover::after,
-  .cart:hover::after,
-  .nav-box:focus::after,
-  .cart:focus::after { width: 100%; }
+
+@media (min-width: 1024px) {
+    .header {
+        display: none;
+    }
+    .header-desk  {
+        display: flex;
+        justify-content: space-between;
+        border-top: 1px solid #121212;
+        width: 100%;
+    }
+    .shop-contact, .sign-cart {
+        display: flex;
+    }
+    .header-desk  p {
+        font-family: 'Gilroy';
+        font-weight: 500;
+        font-size: 16px;
+        line-height: 100%;
+
+    }
+    .header-desk .shop-desk,
+    .header-desk .contact-desk,
+    .header-desk .sign-desk,
+    .header-desk .cart-desk {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        border: 1px solid #121212;
+    } 
+}
+
+@media (min-width: 1440px) {
+
+
+    .header {
+        display: none;
+    }
+    .header-desk  {
+        display: flex;
+        justify-content: space-between;
+        border-top: 1px solid #121212;
+        width: 100%;
+    }
+    
+    .header-desk  p {
+        font-family: 'Gilroy';
+        font-weight: 500;
+        font-size: 16px;
+        line-height: 100%;
+
+    }
+    .header-desk .shop-desk,
+    .header-desk .contact-desk,
+    .header-desk .sign-desk,
+    .header-desk .cart-desk {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        border: 1px solid #121212;
+    }
 }

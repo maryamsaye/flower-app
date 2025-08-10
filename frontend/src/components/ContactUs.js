@@ -1,66 +1,67 @@
-import React from 'react'; 
 import './ContactUs.css';
-import storefrontImg from '../assets/storefront.png'; 
-import { FaInstagram, FaPinterestP, FaFacebookF, FaTwitter, FaTelegram } from 'react-icons/fa';
+import RightColumn from '../assets/storefront.png';
+import Phone from '../assets/phone icon.svg';
+import Location from '../assets/locationic.svg';
+import Insta from '../assets/Instagram.svg';
+import Facebook from '../assets/Facebook.svg';
+import Twitter from '../assets/Twitter.svg';
+import Pinterest from '../assets/Pinterest.svg';
+import Tele from '../assets/Telegram.svg';
 
-const ContactUs = () => {
-  return (                                              
-    <div className="section">
-      <section className="contact-form-section">
-
-        {/* Right Column */}
-        <div className="form-right">
-          <img src={storefrontImg} alt="Kyiv LuxeBouquets storefront" />
-          
-          <div className="follow"> 
-            <h3>Follow us:</h3>
-            <div className="social-icons">
-              <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">
-                <FaInstagram />
-              </a>
-              <a href="https://pinterest.com" target="_blank" rel="noopener noreferrer">
-                <FaPinterestP />
-              </a>
-              <a href="https://facebook.com" target="_blank" rel="noopener noreferrer">
-                <FaFacebookF />
-              </a>
-              <a href="https://twitter.com" target="_blank" rel="noopener noreferrer">
-                <FaTwitter />
-              </a>
-              <a href="https://telegram.org" target="_blank" rel="noopener noreferrer">
-                <FaTelegram />
-              </a>
+const Contact = () => {
+    return ( 
+        <>
+        <div className="contact-main">
+            <div className="kyiv">
+                <div className="kyiv-pic"><img src={RightColumn} alt="Kyiv Pic" /></div>
+                <div className="follow">
+                    <h3>Follow us</h3>
+                    <div className="social">
+                        <img src={Insta} alt="Instagram Icon" /><img src={Pinterest} alt="Pinterest Icon" /><img src={Facebook} alt="Facebook Icon" /><img src={Twitter} alt="Twitter Icon" /><img src={Tele} alt="Telegram Icon" />
+                    </div>
+                </div>
             </div>
-          </div>
+
+
+            <div className="to-contact">
+                <div className="top">
+                    <h2>To Contact Us</h2>
+                    <label>We will call you back</label>
+                    <div className="call-block">
+                        <input type="text" placeholder='+380 XX XXX XX XX'/>
+                        <button>BLOCK A CALL</button>
+                    </div>
+                </div>
+                
+                <div className="bottom-block">
+                    <div className="phone-div">
+                      <h3>Phone</h3>
+                    </div>
+                    <div className="phone-no">
+                        <div className="phone-no1">
+                          <img src={Phone} alt="Phone Icon" />
+                          <h5>+380980099777</h5>
+                        </div>
+                        <div className="phone-no1">
+                            <img src={Phone} alt="Phone Icon" />
+                            <h5>+380980099111</h5>
+                        </div>
+                    </div>
+
+                    <div className="address-div">
+                        <h3>Address</h3>
+                    </div>
+                    <div className="address">
+                        <h5>Opening hours: 8 to 11 p.m.</h5>
+                        <div className="loc">
+                            <img src={Location} alt="Location Icon" /><h6>15/4 Khreshchatyk Street, Kyiv </h6>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-
-        {/* Left Column */}
-        <div className="form-left">
-          <h2>To Contact Us</h2>
-          <p className="form-description">Leave your number and we'll get back to you shortly</p>
-          
-          <form className="phone-form">
-            <input type="tel" placeholder="+380 XX XXX XX XX" required />
-            <button type="submit">BOOK A CALL</button>
-          </form>
-
-          <div className="contact-details">
-            <div className="detail-block">
-              <h4>Phone</h4>
-              <p>+380980099777</p>
-              <p>+380980099111</p>
-            </div>
-            
-            <div className="detail-block">
-              <h4>Address</h4>
-              <p>8 to 11 P.M.</p>
-              <p>15/4 Khreshchatyk Street, Kyiv</p>
-            </div>
-          </div>
-        </div>
-      </section>
-    </div>
-  );
-};
-
-export default ContactUs;
+        </>
+     );
+}
+ 
+export default Contact;

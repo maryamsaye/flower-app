@@ -1,74 +1,98 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-
 import './Hero.css';
+import Fresh from '../assets/fresh.webp';
+import Dried from '../assets/dried.webp';
+import Live from '../assets/live plants.webp';
+import Aroma from '../assets/aroma.webp';
+import Fresheners from '../assets/fresheners.webp'
+import { Link } from "react-router-dom";
 
-import womenInwyt from '../assets/womeninwyt.png';
-import freshSample from '../assets/freshsample.jpg';
-import drySample from '../assets/drysample.png';
-import livePlant from '../assets/liveplant.png';
-import aromaCandle from '../assets/aromacandle.png';
-import fresheners from '../assets/fresheners.png';
 
-const categories = [
-  { image: freshSample, label: 'Fresh Flowers', path: '/shop/fresh-flowers' },
-  { image: drySample, label: 'Dried Flowers', path: '/shop/dried-flowers' },
-  { image: livePlant, label: 'Live Plants', path: '/shop/live-plants' },
-  { image: aromaCandle, label: 'Aroma Candles', path: '/shop/aroma-candles' },
-  { image: fresheners, label: 'Fresheners', path: '/shop/fresheners' },
-];
+const Category = () => {
+    return ( 
+        <>
+        <div className="all-flowers">
 
-// Define the layout pattern manually to match your Figma
-const layoutPattern = ['text-first', 'image-first', 'text-first', 'image-first', 'text-first'];
+            <div className="fresh all">
+                <Link to="/category/fresh" className='no-underline'>
+                    <div className="fresh-text">
+                        <h3>Fresh Flowers</h3>
+                        <div className="shop-arrow"><p>Shop now<span>&#8594;</span></p></div>
+                    </div>
+                </Link>
+                
+                <Link to="/category/fresh" className='no-underline'>
+                    <div className="fresh-img">
+                        <img src={Fresh} alt="fresh flowers link" />
+                    </div>
+                </Link>
+            </div>
+            
+            <div className="dried all">
 
-const Hero = () => {
-  return (
-    <section className="hero-section">
-      {/* Left Column */}
-      <div className="hero-left">
-        <h1><strong>Kyiv <br /> LuxeBouquets<sup>®</sup></strong></h1>
-        <p className="subheading">
-          Discover Uniquely Crafted Bouquets and Gifts for Any Occasion: Spread Joy with Our <i>Online Flower Delivery Service</i>.
-        </p>
+                <Link to = "/category/dried">
+                    <div className="dried-img">
+                        <img src={Dried} alt="dried flowers link" />
+                    </div>
+                </Link>
 
-        <div className="florist-info">
-          <img src={womenInwyt} alt="Florist" />
-          <p>
-            Experience the joy of giving with our modern floral studio. Order online and send fresh flowers, plants and gifts today.
-          </p>
+                <Link to="/category/dried" className='no-underline'>
+                    <div className="dried-text">
+                        <h3>Dried Flowers</h3>
+                        <div className="shop-arrow"><p><span>&#8592;</span>Shop now</p></div>
+                    </div>
+                </Link>
+            </div>
+            
+            <div className="live all">
+
+                <Link to="/category/live" className='no-underline'>
+                    <div className="live-text">
+                        <h3>Live Plants </h3>
+                        <div className="shop-arrow"><p>Shop now   <span>&#8594;</span></p></div>
+                    </div>
+                </Link>
+            
+                <Link to="/category/live">
+                    <div className="live-img">
+                        <img src={Live} alt="live plants flowers link" />
+                    </div>
+                </Link>  
+            </div>
+            <div className="aroma all">
+                <Link to="/category/aroma">
+                    <div className="aroma-img">
+                        <img src={Aroma} alt="aroma plants flowers link" />
+                    </div>
+                </Link>
+                
+                <Link to="/category/aroma" className='no-underline'>
+                    <div className="aroma-text">
+                        <h3>Aroma Candels</h3>
+                        <div className="shop-arrow "><p><span>&#8592;</span>   Shop now</p></div>
+                    </div>
+                </Link>
+            </div>
+            
+
+            <div className="fresheners all">
+
+                <Link to="/category/fresheners" className='no-underline'>
+                    <div className="fresheners-text">
+                        <h3>Fresheners</h3>
+                        <div className="shop-arrow"><p>Shop now   <span>&#8594;</span></p></div> 
+                    </div>
+                </Link>
+        
+                <Link to="/category/fresheners">
+                    <div className="fresheners-img">
+                        <img src={Fresheners} alt="fresheners flowers link" />
+                    </div>
+                </Link>
+                
+            </div>
         </div>
-      </div>
+        </>
+);
+}
 
-      {/* Right Column */}
-      <div className="hero-right">
-        {categories.map((cat, index) => (
-          <div key={index} className={`category-pair ${index === 4 ? 'centered' : ''}`}>
-            {layoutPattern[index] === 'text-first' ? (
-              <>
-                <div className="text-card">
-                  <h4>{cat.label}</h4>
-                  <Link to={cat.path} className="shop-now-btn">Shop now →</Link>
-                </div>
-                <div className="image-card">
-                  <img src={cat.image} alt={cat.label} />
-                </div>
-              </>
-            ) : (
-              <>
-                <div className="image-card">
-                  <img src={cat.image} alt={cat.label} />
-                </div>
-                <div className="text-card">
-                  <h4>{cat.label}</h4>
-                  <Link to={cat.path} className="shop-now-btn">Shop now →</Link>
-                </div>
-              </>
-            )}
-          </div>
-        ))}
-      </div>
-    </section>
-  );
-};
-
-export default Hero;
+export default Category;

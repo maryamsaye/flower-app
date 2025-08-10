@@ -1,44 +1,62 @@
-import React from 'react';
-import './WhyChooseUs.css';
-
-const features = [
-  {
-    title: 'Stylish bouquets by florists',
-    description: 'At our floral studio, our professional florists craft the most elegant and stylish bouquets using only the freshest and highest quality materials available. We stay up-to-date with the latest floral design trends and offer unique arrangements that are sure to impress. Let us brighten up your day with our stunning bouquets and same-day delivery service..',
-  },
-  {
-    title: 'On-time delivery',
-    description: 'Never miss a moment with our on-time flower delivery service. Our couriers will deliver your bouquet personally, without boxes, to ensure it arrives in perfect condition. Trust us to deliver your thoughtful gift reliably..',
-  },
-  {
-    title: 'Safe payment',
-    description: 'You can feel secure when placing an order with us, as we use industry-standard security measures to protect your payment information. Your transaction will be safe and hassle-free, so you can shop with confidence..',
-  },
-  {
-    title: 'Subscription by your needs',
-    description: 'With our subscription service tailored to your specific needs, you can enjoy the convenience of having beautiful bouquets delivered straight to your door at regular intervals. Our flexible service is perfect for busy individuals or those who want to ensure they always have fresh flowers on hand. You will save time and money with this hassle-free solution to your floral needs..',
-  },
-];
+import "./WhyChooseUs.css";
 
 const WhyChooseUs = () => {
   return (
-    
-    <section className="us-section">
-      {/* Left Column */}
-      <div className="us-left">
-        <h2>WHY CHOOSE US?</h2>
-      </div>
+    <>
+      <div className="benefits">
+        <div className="why">
+          <h1>Why choose us ?</h1>
+        </div>
 
-      {/* Right Column */}
-      <div className="us-right">
-        {features.map((item, idx) => (
-          <div key={idx} className="us-content">
-            <h3>{item.title}</h3>
-            <p>{item.description}</p>
+        <div className="soss">
+          <div className="stylish">
+            <h3>Stylish bouquets by florists</h3>
+            <p>
+              At our floral studio, our professional florists craft the most
+              elegant and stylish bouquets using only the freshest and highest
+              quality materials available. We stay up-to-date with the latest
+              floral design trends and offer unique arrangements that are sure to
+              impress. Let us brighten up your day with our stunning bouquets and
+              same-day delivery service.
+            </p>
           </div>
-        ))}
+
+          <div className="on-time">
+            <h3>On-time delivery</h3>
+            <p>
+              Never miss a moment with our on-time flower delivery service. Our
+              couriers will deliver your bouquet personally, without boxes, to
+              ensure it arrives in perfect condition. Trust us to deliver your
+              thoughtful gift reliably.
+            </p>
+          </div>
+
+          <div className="safe">
+            <h3>Safe payment</h3>
+            <p>
+              You can feel secure when placing an order with us, as we use
+              industry-standard security measures to protect your payment
+              information. Your transaction will be safe and hassle-free, so you
+              can shop with confidence.
+            </p>
+          </div>
+
+          <div className="sub">
+            <h3>Subscription by your needs</h3>
+            <p>
+              With our subscription service tailored to your specific needs, you
+              can enjoy the convenience of having beautiful bouquets delivered
+              straight to your door at regular intervals. Our flexible service is
+              perfect for busy individuals or those who want to ensure they always
+              have fresh flowers on hand. You'll save time and money with this
+              hassle-free solution to your floral needs.
+            </p>
+          </div>
+        </div>
       </div>
-    </section>
+        
+        
+    </>
   );
 };
 

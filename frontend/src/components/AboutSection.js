@@ -1,38 +1,29 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-
 import './AboutSection.css';
+import { useNavigate } from 'react-router-dom';
+const About = () => {
 
-const AboutSection = () => {
-return (
-    <div className="section">
-    <section className="about-section">
-      {/* Left Column */}
-        <div className="about-left">
-        <h2>About us</h2>
+    const navigate = useNavigate();
+    const goToAbout = () => {
+        navigate("/about");
+    }
+
+
+    return ( 
+        <>
+        <div className="about">
+            <div className="about-text">
+                <h1>About us</h1>
+            </div>
+            <div className="content">
+                <h5>OUR STORY</h5>
+                <h3>Kyiv LuxeBouquets</h3>
+                <p>We are a modern local floral studio, which specializes in the design and delivery of unique bouquets. We have the best florists who carefully select each look, our studio cooperates directly with farms for growing different flowers, so we always have fresh flowers, which are collected by our florists in exquisite bouquets. We have a collection of fresh bouquets, collections of dried bouquets, house plants, as well as fragrant candles from luxury brands to create the perfect atmosphere. Make someone's day amazing by sending flowers, plants and gifts the same or next day. Ordering flowers online has never been easier.</p>
+                <button onClick={goToAbout}>LEARN MORE</button>
+            </div>
         </div>
-
-    <div className="about-right">
-  <div className="about-text">
-    <h3>OUR STORY</h3>
-    <h2>Kyiv LuxeBouquets</h2>
-    <p>
-      Kyiv LuxeBouquets is a modern floral studio offering unique floral arrangements
-      and thoughtful gifts curated by passionate florists. We work with fresh flowers
-      to craft meaningful bouquets and provide same-day delivery throughout the city.
-      Celebrate moments, express emotions, and spread joy through the art of flowers.
-    </p>
-  </div>
-  <Link to="/AboutPage">
-    <button>LEARN MORE</button>
-  </Link>
-</div>
-
-
-
-    </section>
-    </div>
-    );
-};
-
-export default AboutSection;
+        </>
+        
+     );
+}
+ 
+export default About;

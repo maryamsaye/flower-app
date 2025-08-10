@@ -1,161 +1,136 @@
-/* ---------- Hero.css (square cards, centred headings) ---------- */
-
-/* 1. Section wrapper */
-.hero-section {
-  display: flex;
-  flex-direction: column;   /* mobile: stack columns */
-  flex-wrap: wrap;          /* ✅ prevent overflow */
-  gap: 2rem;
-  /* padding: 2rem 1.25rem; */
-  font-family: "Inter", sans-serif;
-  max-width: 1200px;
-  margin: 0 auto;
+.all{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr)
 }
 
-/* 2. Left column */
-.hero-left {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
+.fresh-img {
+    height: 100%;
 }
 
-.hero-left h1 {
-  font-size: 2.6rem;
-  line-height: 1.15;
-  margin: 0 0 1rem;
+.no-underline{
+    text-decoration: none;
+    color: #121212;
+}
+.all {
+    border: 1px solid #121212;
+}
+.shop-arrow span {
+    font-size: 20px;
+    font-weight: bolder;
+    margin-left: 10px;
 }
 
-.subheading {
-  font-size: 1rem;
-  color: #555;
-  margin-bottom: 1.75rem;
-  max-width: 28rem;
+.all-flowers {
+    border: 1px solid #121212;
 }
 
-/* Florist info card */
-.florist-info {
-  width: 100%;
-  display: flex;
-  align-items: stretch;
-  border: 1px solid #121212;
-  border-radius: 0;
-  overflow: hidden;
-  margin-top: 1.6rem;
+.fresh-text, .dried-img, .live-text, .aroma-img, .fresheners-text {
+    border-right: 1px solid #121212;
+    height: 100%;
+}
+.fresh-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; 
 }
 
-.florist-info img {
-  width: 45%;
-  object-fit: cover;
-  border: 1px solid #121212;
+.dried-img img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
 }
 
-.florist-info p {
-  flex: 1;
-  padding: 1rem 1.1rem;
-  display: flex;
-  align-items: center;
-  text-align: center;
+.live-img img {
+    height: 100%;
+    width: 100%;
+    margin-bottom: -4px;
+    
 }
 
-/* 3. Right column */
-.hero-right {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 1.6rem;
-  width: 100%;
+.fresheners-img img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    margin-bottom: -4px;
 }
 
-/* Each category pair */
-.category-pair {
-  display: flex;
-  flex-direction: row;
-  align-items: stretch;
-  border: 1px solid #121212;
-  border-radius: 0;
-  overflow: hidden;
-  max-width: 100%; /* ✅ prevent horizontal overflow */
+.dried-img img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+
 }
 
-.category-pair.centered {
-  justify-content: center;
+.aroma-img img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
 }
 
-/* Text card */
-.text-card {
-  flex: 1;
-  padding: 1rem 1.1rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
+.all-flowers h3 {
+    font-family: 'Gilroy';
+    font-weight: 500;
+    font-size: 26px;
+    line-height: 120%;
+    letter-spacing: 0%;
+    text-align: center;
+    vertical-align: middle;
+    margin:0px 12px 30px 12px;
+    padding-top: 30px;
+
 }
 
-.text-card h4 {
-  margin: auto 0;
-  font-size: 1rem;
-  font-weight: 600;
+.shop-arrow {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 20px;
+}
+.shop-arrow p {
+    font-family: 'Gilroy';
+    font-weight: 800;
+    font-size: 15px;
+    vertical-align: middle;
+
 }
 
-.shop-now-btn {
-  margin-top: auto;
-  font-size: 0.9rem;
-  text-decoration: none;
-  color: #1a1a1a;
-  transition: opacity 0.25s;
-}
 
-.shop-now-btn:hover {
-  opacity: 0.7;
-}
-
-/* Image card */
-.image-card {
-  width: 45%;
-  display: flex;
-  border-right: 1px solid black;
-  max-width: 100%; /* ✅ overflow-safe */
-}
-
-.image-card img {
-  width: 100%;
-  height: auto;
-  object-fit: cover;
-  border-radius: 0;
-}
-
-/* 4. Tablet (≥768px) */
 @media (min-width: 768px) {
-  .hero-left h1 {
-    font-size: 3rem;
-  }
+    .shop-arrow p{
+        margin-top: 100px;
+        font-size: 1.5rem;
+    }
 
-  .florist-info {
-    margin-top: auto;
-  }
+    .fresh-text h3, .dried-text h3, .live-text h3, .aroma-text h3, .fresheners-text h3 {
+        padding-top: 60px;
+    }
+   
 }
 
-/* 5. Desktop (≥1024px) */
 @media (min-width: 1024px) {
-  .hero-section {
-    flex-direction: row;
-    align-items: flex-start;
-  }
+    .shop-arrow p {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
 
-  .hero-left {
-    flex: 1;
-    align-items: flex-start;
-    text-align: left;
-  }
-
-  .hero-right {
-    flex: 1;
-  }
+    .live-img {
+        height: 100%;
+    }
+    .fresheners-img {
+        height: 100%;
+    }
+   
+   
 }
 
-/* 6. Large Desktop (≥1400px) */
-@media (min-width: 1400px) {
-  .hero-left h1 {
-    font-size: 3.6rem;
-  }
+@media (min-width: 1440px) {
+    .all-flowers h3 {
+        padding-top: 100px;
+    }
+
+    .fresh-text h3, .dried-text h3, .live-text h3, .aroma-text h3, .fresheners-text h3 {
+        padding-top: 130px;
+    }
+
 }

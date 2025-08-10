@@ -1,21 +1,55 @@
 import React from "react";
-import NavBar from "./components/NavBar";
-import Hero from './components/Hero'; 
-import AboutSection from './components/AboutSection'; 
-import WhyChooseUs from './components/WhyChooseUs'; 
-import ContactUs from './components/ContactUs'; 
+import { Routes, Route } from "react-router-dom";
+import Home from "./pages/Home"; 
+import Category from "./pages/Category"; 
+import AboutUs from "./pages/AboutUs";
+import Product from './pages/Product';
+// import Subscription from './pages/Subscription';
+import Cart from './pages/UserPages/Cart';
+import SignIn from './pages/UserPages/SignIn';
+import SignUp from './pages/UserPages/SignUp'
+import Success from './pages/UserPages/success';
+import Hero from "./components/Hero"; 
+import ContactUs from "./components/ContactUs"; 
+
+
+
+
+
+
+
 import './App.css';
 
-function App() {
+function App ()  {
   return (
-    <div className="App">
-      <NavBar />
-      <Hero />
-      <AboutSection />
-      <WhyChooseUs />
-      <ContactUs />
+    <div className="app-container">
+      <>
+    <Routes>
+      <Route path="/" element={<Home />} />
+      <Route path="/category/:categoryType" element={<Category />} />
+      <Route path="/about" element={<AboutUs />}></Route>
+      <Route path="/product/:id" element={<Product />} />
+      {/* <Route path="/subscription" element={<Subscription />}></Route> */}
+      <Route path="/cart" element={<Cart />}></Route>
+      <Route path="/signin" element={<SignIn />}></Route>
+      <Route path="/signup" element={<SignUp />}></Route>
+      <Route path="/success" element={<Success />} />   
+      <Route path="/shop" element={<Hero />} /> 
+      <Route path="/contact" element={<ContactUs />} /> 
+           
+     
+
+
+
+
+
+
+      {/* Future pages */}
+      {/* <Route path="/shop" element={<Shop />} /> */}
+    </Routes>
+    </>
     </div>
   );
-}
-
+};
+    
 export default App;

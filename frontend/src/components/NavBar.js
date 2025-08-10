@@ -1,87 +1,75 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import { FaBars, FaShoppingBag, FaTimes } from "react-icons/fa";
-import {
-  FaInstagram,
-  FaPinterest,
-  FaFacebookF,
-  FaTwitter,
-  FaTelegramPlane,
-} from "react-icons/fa";
-
-import "./NavBar.css";
+import ShoppingBag from '../assets/shoppingbag.svg';
+import './NavBar.css';
+import { Link, useNavigate } from "react-router-dom";
+import Menu from './Menu';
+import { useState, useEffect } from 'react';
 
 const NavBar = () => {
-  const [menuOpen, setMenuOpen] = useState(false);
+  const [openHamburger, setOpenHamburger] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const navigate = useNavigate();
 
-  const toggleMenu = () => setMenuOpen(prev => !prev);
-  const closeMenu = () => setMenuOpen(false);
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    setIsLoggedIn(!!token);
+  }, []);
+
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    setIsLoggedIn(false);
+    navigate("/signin");
+  };
 
   return (
-    <nav className="utility-nav">
-      {/* Mobile/Tablet Nav */}
-      <div className="mobile-nav">
-        <button className="menu-icon" onClick={toggleMenu}>
-          {menuOpen ? <FaTimes size={20} /> : <FaBars size={20} />}
-        </button>
-
-        <Link to="/product" className="shop-icon">
-          <FaShoppingBag size={20} />
-        </Link>
-      </div>
-
-      {/* Slide-out menu */}
-      {menuOpen && (
-<div className="mobile-menu">
-
-  <button className="close-menu-icon" onClick={closeMenu} aria-label="Close menu">
-    <FaTimes size={24} />
-  </button>
-  <div className="menu-links">
-    <Link to="/signin" onClick={closeMenu}>Sign In</Link>
-    <Link to="/product" onClick={closeMenu}>Shop</Link>
-    <Link to="/service" onClick={closeMenu}>Service</Link>
-    <Link to="/contact" onClick={closeMenu}>Contact</Link>
-    <Link to="/about" onClick={closeMenu}>About Us</Link>
-    <Link to="/shipping" onClick={closeMenu}>Shipping & Returns</Link>
-    <Link to="/terms" onClick={closeMenu}>Terms & Conditions</Link>
-    <Link to="/privacy" onClick={closeMenu}>Privacy Policy</Link>
-  </div>
-
-  <div className="menu-socials">
-  <button className="icon-button" aria-label="Instagram">
-    <FaInstagram size={20} />
-  </button>
-  <button className="icon-button" aria-label="Pinterest">
-    <FaPinterest size={20} />
-  </button>
-  <button className="icon-button" aria-label="Facebook">
-    <FaFacebookF size={20} />
-  </button>
-  <button className="icon-button" aria-label="Twitter">
-    <FaTwitter size={20} />
-  </button>
-  <button className="icon-button" aria-label="Telegram">
-    <FaTelegramPlane size={20} />
-  </button>
-</div>
-
-</div>
-
-      )}
-
-      {/* Desktop Nav */}
-      <div className="desktop-nav">
-        <div className="utility-left">
-          <Link to="/products" className="nav-box">Shop</Link>
-          <Link to="/contact" className="nav-box">Contact</Link>
-        </div>
-        <div className="nav-right">
-          <Link to="/signin" className="nav-box">Sign In</Link>
-          <Link to="/cart" className="cart">Cart 🛒</Link>
+    <>
+      <div className="header">
+        <div className="header-icons">
+          <div className="header-ic ham">
+            <Link className='burger-link' onClick={() => setOpenHamburger(true)}>&#9776;</Link>            
+          </div> 
+          <div className="header-ic shopbag">
+            <Link to="/cart"><img src={ShoppingBag} alt="" /></Link>
+          </div>
         </div>
       </div>
-    </nav>
+      <Menu isOpen={openHamburger} onClose={() => setOpenHamburger(false)} />
+
+      <div className="header-desk">
+        <div className="shop-contact">
+          <Link to="/shop" className='burger-lnk'>
+            <div className="shop-desk">
+              <p>Shop</p>
+            </div>
+          </Link>
+
+          <Link to="/contact" className='burger-link'>
+            <div className="contact-desk">
+              <p>Contact</p>
+            </div>
+          </Link>
+        </div>
+
+        <div className="sign-cart">
+          {!isLoggedIn ? (
+            <Link to="/signin" className='burger-link'>
+              <div className="sign-desk">
+                <p>Sign in</p>
+              </div>
+            </Link>
+          ) : (
+            <div className="sign-desk" onClick={handleLogout} style={{ cursor: "pointer" }}>
+              <p>Sign out</p>
+            </div>
+          )}
+
+          <Link to="/cart" className='burger-lnk'>
+            <div className="cart-desk">
+              <p>Cart</p>
+            </div>
+          </Link>
+        </div>
+      </div>
+    </>
   );
 };
 
