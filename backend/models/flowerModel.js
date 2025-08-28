@@ -1,29 +1,36 @@
-const mongoose = require('mongoose')
+// models/flowerModel.js
+const mongoose = require("mongoose");
 
-const Schema = mongoose.Schema
+const Schema = mongoose.Schema;
 
-const flowerSchema = new Schema({
+const flowerSchema = new Schema(
+  {
     title: {
-        type: String,
-        required: true
+      type: String,
+      required: true,
+      trim: true,
     },
     price: {
-        type: Number,
-        required: true
+      type: Number,
+      required: true,
+      min: 0,
     },
     description: {
-        type: String,
-        required: true,
+      type: String,
+      required: true,
+      trim: true,
     },
-    Image: {
-        type: String,
-        required: true
+    image: {   // ✅ lowercase
+      type: String,
+      required: true,
     },
     category: {
-        type: String,
-        required: true
-    }
-    
-},{timestamps:true})
+      type: String,
+      required: true,
+      trim: true,
+    },
+  },
+  { timestamps: true }
+);
 
-module.exports = mongoose.model('Flower', flowerSchema)
+module.exports = mongoose.model("Flower", flowerSchema);

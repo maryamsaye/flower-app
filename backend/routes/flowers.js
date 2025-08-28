@@ -1,7 +1,7 @@
 const express = require('express');
 const multer = require('multer');
-const path = require('path');   // ← Required for file extension
-const fs = require('fs');       // ← Required for deleting local file
+const path = require('path');   // For file extensions
+const fs = require('fs');       // For deleting local file
 const router = express.Router();
 const cloudinary = require('../config/cloudinaryConfig');
 
@@ -24,7 +24,7 @@ const storage = multer.diskStorage({
 const upload = multer({ storage });
 
 // Route to test manual upload to Cloudinary (optional)
-router.post('/upload', upload.single('Image'), async (req, res) => {
+router.post('/upload', upload.single('image'), async (req, res) => {
   try {
     const file = req.file;
 
@@ -36,7 +36,7 @@ router.post('/upload', upload.single('Image'), async (req, res) => {
       folder: 'flowers',
     });
 
-    fs.unlinkSync(file.path); // delete file from local uploads folder
+    fs.unlinkSync(file.path); // delete local file
 
     res.status(201).json({
       message: 'Uploaded successfully',
@@ -51,8 +51,8 @@ router.post('/upload', upload.single('Image'), async (req, res) => {
 router.get('/random', getRandomFlowers);
 router.get('/',        getAllFlowers);
 router.get('/:id',     getFlowerById);
-router.post('/',       upload.single('Image'), addFlower);
-router.patch('/:id',   upload.single('Image'), updateFlower);
+router.post('/',       upload.single('image'), addFlower);
+router.patch('/:id',   upload.single('image'), updateFlower);
 router.delete('/:id',  deleteFlower);
 
 module.exports = router;

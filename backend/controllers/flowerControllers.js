@@ -1,56 +1,66 @@
 // controllers/flowerControllers.js
-const fs       = require('fs');
-const Flower   = require('../models/flowerModel');
-const cloud    = require('../config/cloudinaryConfig');
+const fs = require("fs");
+const Flower = require("../models/flowerModel");
+const cloud = require("../config/cloudinaryConfig");
 
 /* ── POST /api/flowers ─────────────────────────────────────────────── */
 exports.addFlower = async (req, res) => {
   try {
     const { title, price, description, category } = req.body;
-    
 
-    if (!req.file)
-      return res.status(400).json({ message: 'Image file is required' });
+    if (!req.file) {
+      return res.status(400).json({ message: "Image file is required" });
+    }
 
+    // Upload image to Cloudinary
     const uploaded = await cloud.uploader.upload(req.file.path, {
-      folder: 'flowers',
+      folder: "flowers",
     });
-    fs.unlinkSync(req.file.path); // delete local temp file
 
+    // Delete local temp file
+    fs.unlinkSync(req.file.path);
+
+    // Save flower in MongoDB
     const flower = await Flower.create({
       title,
       price,
       description,
       category,
-      Image: url,
+      image: uploaded.secure_url, // ✅ lowercase key
     });
 
+    console.log("🌸 Flower saved:", flower);
     res.status(201).json(flower);
   } catch (err) {
-    console.error('Error adding flower:', err);
-    res.status(500).json({ message: 'Error adding flower', error: err.message });
+    console.error("❌ Error adding flower:", err);
+    res
+      .status(500)
+      .json({ message: "Error adding flower", error: err.message });
   }
 };
 
 /* ── GET /api/flowers ──────────────────────────────────────────────── */
-exports.getAllFlowers = (_, res) =>
-  Flower.find()
-    .then(data => res.json(data))
-    .catch(err =>
-      res.status(500).json({ message: 'Fetching flowers failed', error: err.message })
-    );
+exports.getAllFlowers = async (_, res) => {
+  try {
+    const flowers = await Flower.find().sort({ createdAt: -1 });
+    res.json(flowers);
+  } catch (err) {
+    res
+      .status(500)
+      .json({ message: "Fetching flowers failed", error: err.message });
+  }
+};
 
 /* ── GET /api/flowers/:id ──────────────────────────────────────────── */
-exports.getFlowerById = (req, res) =>
-  Flower.findById(req.params.id)
-    .then(flower =>
-      flower
-        ? res.json({flower})
-        : res.status(404).json({ message: 'Flower not found' })
-    )
-    .catch(err =>
-      res.status(500).json({ message: 'Error', error: err.message })
-    );
+exports.getFlowerById = async (req, res) => {
+  try {
+    const flower = await Flower.findById(req.params.id);
+    if (!flower) return res.status(404).json({ message: "Flower not found" });
+    res.json(flower);
+  } catch (err) {
+    res.status(500).json({ message: "Error", error: err.message });
+  }
+};
 
 /* ── PATCH /api/flowers/:id ────────────────────────────────────────── */
 exports.updateFlower = async (req, res) => {
@@ -60,10 +70,10 @@ exports.updateFlower = async (req, res) => {
 
     if (req.file) {
       const uploaded = await cloud.uploader.upload(req.file.path, {
-        folder: 'flowers',
+        folder: "flowers",
       });
       fs.unlinkSync(req.file.path);
-      updateData.Image = uploaded.secure_url;
+      updateData.image = uploaded.secure_url; // ✅ lowercase key
     }
 
     const flower = await Flower.findByIdAndUpdate(req.params.id, updateData, {
@@ -71,26 +81,28 @@ exports.updateFlower = async (req, res) => {
       runValidators: true,
     });
 
-    if (!flower) return res.status(404).json({ message: 'Flower not found' });
+    if (!flower) return res.status(404).json({ message: "Flower not found" });
     res.json(flower);
   } catch (err) {
-    res.status(500).json({ message: 'Error updating flower', error: err.message });
+    res
+      .status(500)
+      .json({ message: "Error updating flower", error: err.message });
   }
 };
 
 /* ── DELETE /api/flowers/:id ───────────────────────────────────────── */
-exports.deleteFlower = (req, res) =>
-  Flower.findByIdAndDelete(req.params.id)
-    .then(flower =>
-      flower
-        ? res.json({ message: 'Deleted' })
-        : res.status(404).json({ message: 'Flower not found' })
-    )
-    .catch(err =>
-      res.status(500).json({ message: 'Error', error: err.message })
-    );
+exports.deleteFlower = async (req, res) => {
+  try {
+    const flower = await Flower.findByIdAndDelete(req.params.id);
+    if (!flower) return res.status(404).json({ message: "Flower not found" });
+    res.json({ message: "Deleted" });
+  } catch (err) {
+    res.status(500).json({ message: "Error", error: err.message });
+  }
+};
 
-    exports. getRandomFlowers = async (req, res) => {
+/* ── GET /api/flowers/random ───────────────────────────────────────── */
+exports.getRandomFlowers = async (req, res) => {
   try {
     const flowers = await Flower.aggregate([{ $sample: { size: 4 } }]);
     res.json({ flowers });
@@ -98,4 +110,3 @@ exports.deleteFlower = (req, res) =>
     res.status(500).json({ message: "Failed to fetch suggested flowers." });
   }
 };
-
