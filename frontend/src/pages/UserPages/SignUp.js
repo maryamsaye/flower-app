@@ -16,6 +16,9 @@ const SignUp = () => {
     e.preventDefault();
     setError(null);
 
+      console.log('Form Data:', { name, email, password });
+
+
     try {
       const res = await fetch(
         "https://flower-backend-utgk.onrender.com/api/users/signup",
