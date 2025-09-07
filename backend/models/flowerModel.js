@@ -5,7 +5,7 @@ const Schema = mongoose.Schema;
 
 const flowerSchema = new Schema(
   {
-    title: {
+    name: {
       type: String,
       required: true,
       trim: true,

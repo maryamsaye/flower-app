@@ -6,7 +6,7 @@ const cloud = require("../config/cloudinaryConfig");
 /* ── POST /api/flowers ─────────────────────────────────────────────── */
 exports.addFlower = async (req, res) => {
   try {
-    const { title, price, description, category } = req.body;
+    const { name, price, description, category } = req.body;
 
     if (!req.file) {
       return res.status(400).json({ message: "Image file is required" });
@@ -22,7 +22,7 @@ exports.addFlower = async (req, res) => {
 
     // Save flower in MongoDB
     const flower = await Flower.create({
-      title,
+      name,
       price,
       description,
       category,
@@ -65,8 +65,8 @@ exports.getFlowerById = async (req, res) => {
 /* ── PATCH /api/flowers/:id ────────────────────────────────────────── */
 exports.updateFlower = async (req, res) => {
   try {
-    const { title, price, description, category } = req.body;
-    const updateData = { title, price, description, category };
+    const { name, price, description, category } = req.body;
+    const updateData = { name, price, description, category };
 
     if (req.file) {
       const uploaded = await cloud.uploader.upload(req.file.path, {
