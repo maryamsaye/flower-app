@@ -14,7 +14,14 @@ const app  = express();
 const PORT = process.env.PORT || 4001;
 
 /* ----------  CORS  -------------------------------------------------- */
-app.use(cors());
+app.use(cors({
+  origin: [
+    'http://localhost:3000',
+    'https://flower-frontend-dggg.onrender.com',
+  ],
+  methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'],
+  credentials: true,
+}));
 
 /* ----------  Body parsers  ----------------------------------------- */
 app.use(express.json());
