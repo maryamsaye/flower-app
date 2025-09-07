@@ -22,7 +22,7 @@ const SignIn = () => {
 
   const handleSignIn = async () => {
     try {
-      const res = await fetch(`${process.env.REACT_APP_API_URL}/api/users/signin`, {
+      const res = await fetch('https://flower-app-jp7a.onrender.com/api/users/signin', {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

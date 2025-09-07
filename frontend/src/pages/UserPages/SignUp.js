@@ -18,7 +18,7 @@ const SignUp = () => {
 
     try {
       const res = await fetch(
-        "https://flower-backend-utgk.onrender.com/api/users/signup",
+        "https://flower-app-jp7a.onrender.com/api/users/signup",
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
