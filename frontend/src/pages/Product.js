@@ -64,7 +64,7 @@ const Product = () => {
   useEffect(() => {
     const fetchFlower = async () => {
       try {
-        const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/flowers/${id}`);
+        const res = await fetch(`${process.env.REACT_APP_API_URL}/api/flowers/${id}`);
         const data = await res.json();
         setFlower(data);
       } catch (err) {
