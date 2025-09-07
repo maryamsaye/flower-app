@@ -17,7 +17,7 @@ const PORT = process.env.PORT || 4001;
 app.use(cors({
   origin: [
     'http://localhost:3000',
-    'https://flower-frontend-dggg.onrender.com',
+    'https://flower-app-frontend.onrender.com',
   ],
   methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'],
   credentials: true,
