@@ -31,7 +31,7 @@ const Category = () => {
 
     const fetchFlowers = async () => {
   try {
-    const res = await fetch(`${process.env.REACT_APP_API_URL}/api/flowers`);
+    const res = await fetch('https://flower-app-jp7a.onrender.com/api/flowers');
     const data = await res.json();
 
     console.log("API Response:", data); // inspect this in console
