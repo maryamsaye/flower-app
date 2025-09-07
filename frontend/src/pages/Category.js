@@ -12,10 +12,10 @@ const Category = () => {
   const [error, setError] = useState("");
 
   const categoryMap = {
-    fresh: "Fresh Flowers",
-    dried: "Dried Flowers",
-    live: "Live Plants",
-    aroma: "Aroma Candels",
+    fresh: "Fresh",
+    dried: "Dried",
+    live: "Live",
+    aroma: "Aroma",
     fresheners: "Fresheners",
   };
 
