@@ -24,6 +24,10 @@ app.use(cors({
   credentials: true,
 }));
 
+app.use("/uploads", express.static(path.join(__dirname, "uploads")));
+app.use(passport.initialize());
+app.use("/api/stripe", stripeRoutes);
+
 /* ----------  Body parsers  ----------------------------------------- */
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
