@@ -48,7 +48,6 @@ app.get('/', (_, res) => res.send('Welcome to the Flower API!'));
 
 app.use('/api/flowers', flowersRouter);
 app.use('/api/users',   userRouter);
-app.use('/api/checkout', stripeRoutes);
 
 /* ----------  Start Server  ----------------------------------------- */
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));

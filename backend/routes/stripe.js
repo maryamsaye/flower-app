@@ -28,7 +28,7 @@ router.post("/create-checkout-session", async (req, res) => {
       payment_method_types: ["card"],
       mode: "payment",
       line_items,
-      success_url: 'https://flower-app-frontend.onrender.com}/success',
+      success_url: 'https://flower-app-frontend.onrender.com/success',
       cancel_url: 'https://flower-app-frontend.onrender.com/cart',
     });
 
