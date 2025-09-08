@@ -24,10 +24,6 @@ app.use(cors({
   credentials: true,
 }));
 
-app.use("/uploads", express.static(path.join(__dirname, "uploads")));
-app.use(passport.initialize());
-app.use("/api/stripe", stripeRoutes);
-
 /* ----------  Body parsers  ----------------------------------------- */
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -38,16 +34,21 @@ app.use((req, _, next) => {
   next(); 
 });
 
+/* ----------  Auth + Static ----------------------------------------- */
+app.use("/uploads", express.static(path.join(__dirname, "uploads")));
+app.use(passport.initialize());
+
+/* ----------  Routes  ------------------------------------------------ */
+app.use('/api/flowers', flowersRouter);
+app.use('/api/users',   userRouter);
+app.use('/api/stripe',  stripeRoutes); // ✅ Correct single mount
+
+app.get('/', (_, res) => res.send('Welcome to the Flower API!'));
+
 /* ----------  DB Connection  ---------------------------------------- */
 mongoose.connect(process.env.MONGO_URI)
   .then(() => console.log("✅ Connected to DB:", mongoose.connection.name))
   .catch(err => console.error("❌ DB connection error:", err));
-
-/* ----------  Routes  ------------------------------------------------ */
-app.get('/', (_, res) => res.send('Welcome to the Flower API!'));
-
-app.use('/api/flowers', flowersRouter);
-app.use('/api/users',   userRouter);
 
 /* ----------  Start Server  ----------------------------------------- */
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
