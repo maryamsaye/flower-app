@@ -77,7 +77,7 @@ const Category = () => {
             {flowers.map((flower) => (
                 <Link to={`/product/${flower._id}`} key={flower._id}>
                     <div className="flower-item">
-                        <img src={flower.Image} alt={flower.title} />
+                        <img src={flower.image} alt={flower.title} />
                         <div className="flower-np">
                             <h6>{flower.title}</h6>
                             <p>Price: ${flower.price}</p>
