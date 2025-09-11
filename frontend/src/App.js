@@ -8,10 +8,11 @@ import Product from './pages/Product';
 import Cart from './pages/UserPages/Cart';
 import SignIn from './pages/UserPages/SignIn';
 import SignUp from './pages/UserPages/SignUp'
-import Success from './pages/UserPages/success';
+// import Success from './pages/UserPages/success';
 import Hero from "./components/Hero"; 
 import ContactUs from "./components/ContactUs"; 
-
+import NavBar from "../src/components/NavBar"
+import Footer from "../src/components/Footer"
 
 
 
@@ -24,6 +25,7 @@ function App ()  {
   return (
     <div className="app-container">
       <>
+    <NavBar />
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/category/:categoryType" element={<Category />} />
@@ -33,20 +35,12 @@ function App ()  {
       <Route path="/cart" element={<Cart />}></Route>
       <Route path="/signin" element={<SignIn />}></Route>
       <Route path="/signup" element={<SignUp />}></Route>
-      <Route path="/success" element={<Success />} />   
+      {/* <Route path="/success" element={<Success />} />    */}
       <Route path="/shop" element={<Hero />} /> 
       <Route path="/contact" element={<ContactUs />} /> 
-           
-     
-
-
-
-
-
-
-      {/* Future pages */}
-      {/* <Route path="/shop" element={<Shop />} /> */}
     </Routes>
+    <Footer />
+
     </>
     </div>
   );

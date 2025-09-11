@@ -1,11 +1,11 @@
 import "./success.css";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { jsPDF } from "jspdf";
 
 const Success = () => {
   const navigate = useNavigate();
-  const [showPopup, setShowPopup] = useState(true);
+  const showPopup = true;
 
   useEffect(() => {
     localStorage.removeItem("cart");

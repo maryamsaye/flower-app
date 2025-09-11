@@ -40,7 +40,7 @@ const AboutUs = () => {
 
             <div className="second-flex">
                 <div className="mob-tab-1">
-                    <img src={Mob1} className="mob-1" /> <img src={Tab1} className="tab-1" />
+                    <img src={Mob1} className="mob-1" alt="icon"  /> <img src={Tab1} className="tab-1" alt="icon" />
                 </div>
                 <div className="sf-text">
                     <h3>Expertly Crafted Bouquets</h3>
@@ -50,7 +50,7 @@ const AboutUs = () => {
 
             <div className="third-flex">
                 <div className="mob-tab-2">
-                    <img src={Mob2} className="mob-2" /><img src={Tab2} className="tab-2" />
+                    <img src={Mob2} className="mob-2" alt="icon" /><img src={Tab2} className="tab-2" alt="icon" />
                 </div>
                 <div className="tf-text">
                     <h3>Bouquets, Gifts & Ambiance</h3>
@@ -60,7 +60,7 @@ const AboutUs = () => {
 
             <div className="fourth-flex">
                 <div className="mob-tab-3">
-                    <img src={Mob3} className="mob-3" /><img src={Tab3} className="tab-3" />
+                    <img src={Mob3} className="mob-3" alt="icon" /><img src={Tab3} className="tab-3" alt="icon" />
                 </div> 
                 <div className="tf-text">
                     <h3>Making Every Day Special</h3>
