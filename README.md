@@ -6,11 +6,12 @@ This is a full-stack flower delivery web application consisting of a **React fro
 
 ##  Live Demo
 
-- **Frontend:** [https://your-frontend-url.onrender.com](https://flower-frontend-dggg.onrender.com)
-- **Backend:** [https://flower-delivery-site-2.onrender.com](https://flower-backend-utgk.onrender.com)
+- **Frontend:** [](https://flower-app-frontend.onrender.com)
+- **Backend:** [](https://flower-app-jp7a.onrender.com)
+- **Admin:** [](https://flower-frontend-admin.onrender.com)
 
  **Presentation Video:**  
-[Watch on Loom]
+[https://www.loom.com/share/9a2fb6d88f26427e9b7dba8066fc6a4e?sid=6497c5e2-0522-4ef2-9771-1c31c40004c7]
 
 ---
 
@@ -30,7 +31,7 @@ This is a full-stack flower delivery web application consisting of a **React fro
 Create a `.env` file in the `/client` directory:
 
 ```env
-REACT_APP_API_URL="https://flower-backend-utgk.onrender.com"
+REACT_APP_API_URL="https://flower-app-jp7a.onrender.com"
  Getting Started
 bash
 Copy
@@ -83,13 +84,9 @@ Uploaded flower images are publicly accessible via:
 bash
 Copy
 Edit
-https://flower-backend-utgk.onrender.com/api/flowers
+https://flower-app-jp7a.onrender.com/api/flowers
 Example:
 
-bash
-Copy
-Edit
-https://flower-backend-utgk.onrender.com
  Backend Dependencies
 express
 
@@ -105,7 +102,7 @@ nodemon (development)
 ## Author
 Name: Maryam Abdu Saye
 Email: marynsaye@gmail.com
-GitHub: https://github.com/maryamsaye/flower-backend.git
+GitHub: https://github.com/maryamsaye/flower-app.git
 
 ## License
 This project is licensed under the MIT License. See the LICENSE file for details.
