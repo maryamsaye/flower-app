@@ -6,10 +6,12 @@ This is a full-stack flower delivery web application consisting of a **React fro
 
 ##  Live Demo
 
-- **Frontend:** [render-link](https://flower-frontend-admin.onrender.com)
+- **Frontend:** [](https://flower-app-frontend.onrender.com)
+- **Backend:** [](https://flower-app-jp7a.onrender.com)
+- **Admin:** [](https://flower-frontend-admin.onrender.com)
 
  **Presentation Video:**  
-[Watch on Loom](https://www.loom.com/share/293138af8e584d4797648fbc8e9def9b?sid=44e74f69-bca3-4f2a-b048-c72be99a91a3)
+[https://www.loom.com/share/9a2fb6d88f26427e9b7dba8066fc6a4e?sid=6497c5e2-0522-4ef2-9771-1c31c40004c7]
 
 ---
 
@@ -60,7 +62,7 @@ Copy
 Edit
 MONGO_URI=your_mongodb_connection_string
 PORT=4001
-Getting Started
+ Getting Started
 bash
 Copy
 Edit
@@ -68,7 +70,7 @@ cd server
 npm install         # Install backend dependencies
 npm start           # Start server in production mode
 npm run dev         # Start server with nodemon (development)
-API Endpoints
+ API Endpoints
 Method	Endpoint	Description
 GET	/api/flowers	Get all flowers
 POST	/api/flowers	Add a new flower
@@ -82,14 +84,10 @@ Uploaded flower images are publicly accessible via:
 bash
 Copy
 Edit
-https://flower-frontend-admin.onrender.com
+https://flower-app-jp7a.onrender.com/api/flowers
 Example:
 
-bash
-Copy
-Edit
-https://flower-app-jp7a.onrender.com
-Backend Dependencies
+ Backend Dependencies
 express
 
 mongoose
@@ -100,13 +98,11 @@ dotenv
 
 nodemon (development)
 
-render (for deployment)
-
 
 ## Author
 Name: Maryam Abdu Saye
 Email: marynsaye@gmail.com
-GitHub: https://github.com/maryamsaye/flower-frontend.git
+GitHub: https://github.com/maryamsaye/flower-app.git
 
 ## License
 This project is licensed under the MIT License. See the LICENSE file for details.
