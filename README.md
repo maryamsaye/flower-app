@@ -6,9 +6,9 @@ This is a full-stack flower delivery web application consisting of a **React fro
 
 ##  Live Demo
 
-- **Frontend:** [](https://flower-app-frontend.onrender.com)
-- **Backend:** [](https://flower-app-jp7a.onrender.com)
-- **Admin:** [](https://flower-frontend-admin.onrender.com)
+- **Frontend:** [(https://flower-app-frontend.onrender.com)]
+- **Backend:** [(https://flower-app-jp7a.onrender.com)]
+- **Admin:** [(https://flower-frontend-admin.onrender.com)]
 
  **Presentation Video:**  
 [https://www.loom.com/share/9a2fb6d88f26427e9b7dba8066fc6a4e?sid=6497c5e2-0522-4ef2-9771-1c31c40004c7]
